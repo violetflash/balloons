@@ -4,7 +4,7 @@ import Menu from "./Components/Menu/Menu";
 import GlobalStyles from "./Components/GlobalStyles/GlobalStyles";
 import Banner from './Components/Banner/Banner';
 import ModalItem from "./Components/ModalItem/ModalItem";
-import Order from "./Components/Order/Order";
+import Checkout from "./Components/Checkout/Checkout";
 
 
 
@@ -16,16 +16,17 @@ const App = () => {
     const [openItem, setOpenItem] = React.useState(null);
     const [openOrder, setOpenOrder] = React.useState(null);
 
-    console.log('Item', openItem);
+
 
     return (
         <React.Fragment>
             <GlobalStyles />
             <NavBar openOrder={openOrder} setOpenOrder={setOpenOrder}/>
-            <Order openOrder={openOrder}/>
+            {/*<Order openOrder={openOrder}/>*/}
             <Banner />
             <Menu setOpenItem={setOpenItem}/>
             <ModalItem openItem={openItem} setOpenItem={setOpenItem}/>
+            <Checkout openOrder={openOrder} setOpenOrder={setOpenOrder}/>
         </React.Fragment>
     );
 

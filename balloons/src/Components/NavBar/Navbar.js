@@ -140,7 +140,9 @@ const Cart = styled.button`
   align-items: center;
   padding: 0;
   //height: 32px;
-  background-color: rgba(144, 139, 140, 0.7);
+  //background-color: rgba(144, 139, 140, 0.7);
+  background-color: rgba(79, 42, 109, 0.6);
+
   border: 1px solid #eee;
   min-width: 200px;
   cursor: pointer;
