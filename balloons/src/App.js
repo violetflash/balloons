@@ -4,6 +4,7 @@ import Menu from "./Components/Menu/Menu";
 import GlobalStyles from "./Components/GlobalStyles/GlobalStyles";
 import Banner from './Components/Banner/Banner';
 import ModalItem from "./Components/ModalItem/ModalItem";
+import Order from "./Components/Order/Order";
 
 
 
@@ -20,6 +21,7 @@ const App = () => {
         <React.Fragment>
             <GlobalStyles />
             <NavBar />
+            {/*<Order />*/}
             <Banner />
             <Menu setOpenItem={setOpenItem}/>
             <ModalItem openItem={openItem} setOpenItem={setOpenItem}/>
