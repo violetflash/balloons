@@ -22,6 +22,7 @@ const Section = styled.section`
 `;
 
 const Menu = ({ setOpenItem }) => {
+
     return (
         <MenuStyled>
             <Section>

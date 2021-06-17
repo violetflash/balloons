@@ -14,14 +14,15 @@ const App = () => {
     //ф-ия setOpenItem - будет назначать, какой это будет товар (по которому кликнули) и будет запускать перерендер
     // компонента
     const [openItem, setOpenItem] = React.useState(null);
+    const [openOrder, setOpenOrder] = React.useState(null);
 
     console.log('Item', openItem);
 
     return (
         <React.Fragment>
             <GlobalStyles />
-            <NavBar />
-            {/*<Order />*/}
+            <NavBar openOrder={openOrder} setOpenOrder={setOpenOrder}/>
+            <Order openOrder={openOrder}/>
             <Banner />
             <Menu setOpenItem={setOpenItem}/>
             <ModalItem openItem={openItem} setOpenItem={setOpenItem}/>

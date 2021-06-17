@@ -140,11 +140,12 @@ const Cart = styled.button`
   align-items: center;
   padding: 0;
   //height: 32px;
-  background-color: rgba(153, 79, 102, 0.7);
+  background-color: rgba(144, 139, 140, 0.7);
   border: 1px solid #eee;
   min-width: 200px;
   cursor: pointer;
   font-family: Roboto, sans-serif;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 
   &:hover ${CartIconBox} {
     &::before {
@@ -192,13 +193,13 @@ const LoginButton = styled.button`
   }
 `;
 
-const Navbar = props => {
+const Navbar = ({ setOpenOrder, openOrder }) => {
     return (
         <NavBarStyled>
             <Logo />
             <H1>Магазин воздушных шаров</H1>
             <Controls>
-                <Cart>
+                <Cart onClick={() => setOpenOrder('Order')}>
                     <CartIconBox>
                         <CartIcon src={cart}/>
                     </CartIconBox>

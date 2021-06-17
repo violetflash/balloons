@@ -11,10 +11,15 @@ const OrderSection = styled.section`
   z-index: 10;
 `;
 
-const Order = props => {
+const Order = ({ openOrder, setOpenOrder }) => {
+
+    if (!openOrder) {
+        return null;
+    }
+
     return (
         <>
-            <OrderSection>
+            <OrderSection id="OrderSection">
 
             </OrderSection>
         </>
