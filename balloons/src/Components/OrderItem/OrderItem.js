@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Delete from '../../images/delete.png';
+import { capitalizer } from "../utils/utils";
 
 const DeleteBtn = styled.button`
   position: relative;
@@ -56,17 +57,64 @@ const Item = styled.li`
   }
 `;
 
-const Image = styled.img`
-  display: inline-block;
+const ItemInfo = styled.div`
+  display: flex;
+  align-items: center;
+  
+  flex-grow: 1;
+`;
+
+const Image = styled.div`
+  position:relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  background-image: ${({img}) => `url(${img})`};
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 40px;
   height: 40px;
   margin-left: 30px;
+  
+  &::before {
+    position: absolute;
+    content: '';
+    width: 200px;
+    height: 200px;
+    background-image: ${({img}) => `url(${img})`};
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1000;
+    border-radius: 50%;
+    opacity: 0;
+    visibility: hidden;
+    right: -200px;
+    bottom: 50%;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  &:hover {
+    &::before {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
 
 `;
 
 const Name = styled.span`
-  flex-grow: 1;
-  margin-left: 30px;
+  margin-left: 10px;
+`;
+
+const Type = styled.span`
+  margin-left: 10px;
+`;
+
+const SubType = styled.span`
+  margin-left: 5px;
 `;
 
 const Quantity = styled.span`
@@ -84,8 +132,12 @@ const Price = styled.span`
 const OrderItem = ({ order, index }) => {
     return (
         <Item data-index={index + ')'}>
-            <Image src={order.img}/>
-            <Name>{order.name}</Name>
+            <ItemInfo>
+                <Image src={order.img} img={order.img}/>
+                <Type>{capitalizer(order.type)}</Type>
+                <SubType>{order.subType}:</SubType>
+                <Name>"{order.name}"</Name>
+            </ItemInfo>
             <Quantity>1</Quantity>
             <Price>{order.price} руб.</Price>
             <DeleteBtn/>
