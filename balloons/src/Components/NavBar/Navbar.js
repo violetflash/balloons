@@ -136,20 +136,29 @@ const CartIconBox = styled.span`
 
 const CartItemsCounter = styled.span`
   position: absolute;
-  content: '';
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 18px;
-  min-width: 20px;
-  height: 20px;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 5px;
   border-radius: 50%;
-  background-color: #fff;
-  top: 0;
-  
+  border: 1px solid #CCCCCC;
+  //background-color: palevioletred;
+  background: rgb(219,112,147);
+  background: linear-gradient(90deg, rgba(219,112,147,1) 0%, rgba(121,97,131,1) 100%);
+  color: #fff;
+  top: -13px;
+  left: 36px;
+  z-index: 1;
+  font-family: Philosopher, sans-serif;
+
+
 `;
 
 const Cart = styled.button`
+  position:relative;
   display: flex;
   align-items: center;
   padding: 0;
@@ -209,16 +218,17 @@ const LoginButton = styled.button`
   }
 `;
 
-const Navbar = ({ setOpenOrder, openOrder }) => {
+const Navbar = ({ setOpenOrder, orderItemsCounter }) => {
+    console.log(Boolean(orderItemsCounter));
     return (
         <NavBarStyled>
             <Logo />
             <H1>Магазин воздушных шаров</H1>
             <Controls>
                 <Cart onClick={() => setOpenOrder('Order')}>
+                    {orderItemsCounter && <CartItemsCounter>{orderItemsCounter}</CartItemsCounter>}
                     <CartIconBox>
                         <CartIcon src={cart}/>
-                        <CartItemsCounter>4</CartItemsCounter>
                     </CartIconBox>
                     <CartInfo>
                         Итого:

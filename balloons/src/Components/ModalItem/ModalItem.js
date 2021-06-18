@@ -152,7 +152,7 @@ const Footer = styled.footer`
   }
 `;
 
-const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
+const ModalItem = ({ openItem, setOpenItem, orders, setOrders, setOrderItemsCounter, orderItemsCounter }) => {
 
     const closeModal = e => {
         if (e.target.id === 'overlay' || e.target.id === 'closeBtn') {
@@ -169,6 +169,8 @@ const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
         setOrders([...orders, newOrder]); //обновляем стейт заказов, деструктурируя уже имеющиеся заказы и добавляя
         // новый
         setOpenItem(null);  //закрываем окно товара, обновляя стейт на null
+        setOrderItemsCounter(orderItemsCounter + 1);
+        console.log(orderItemsCounter)
     };
 
 
