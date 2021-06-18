@@ -152,17 +152,25 @@ const Footer = styled.footer`
   }
 `;
 
-const ModalItem = ({ openItem, setOpenItem }) => {
+const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
-    const closeModal = (e) => {
+    const closeModal = e => {
         if (e.target.id === 'overlay' || e.target.id === 'closeBtn') {
             setOpenItem(null);
         }
     };
 
-    if (!openItem) {
-        return null;
-    }
+    const newOrder = {
+        ...openItem,
+    };
+
+    const addToOrder = () => {
+        console.log(orders);
+        setOrders([...orders, newOrder]); //обновляем стейт заказов, деструктурируя уже имеющиеся заказы и добавляя
+        // новый
+        setOpenItem(null);  //закрываем окно товара, обновляя стейт на null
+    };
+
 
     return (
         <Overlay id="overlay" onClick={closeModal}>
@@ -178,17 +186,18 @@ const ModalItem = ({ openItem, setOpenItem }) => {
                         <InfoLine>Артикул: <span>{'000' + openItem.id}</span></InfoLine>
                         <InfoLine>Размер: <span>{openItem.size}</span></InfoLine>
                         <InfoLine>Страна: <span>{openItem.country}</span></InfoLine>
-                        <InfoLine>Цена: <span>
-                            {openItem.price.toLocaleString('ru-RU', {
-                                style: 'currency',
-                                currency: 'RUB'
-                            })}
-                        </span>
+                        <InfoLine>Цена:
+                            <span>
+                                {openItem.price.toLocaleString('ru-RU', {
+                                    style: 'currency',
+                                    currency: 'RUB'
+                                })}
+                            </span>
                         </InfoLine>
                     </InfoLines>
                 </ModalInfo>
                 <Footer>
-                    <Button text="Добавить в корзину"/>
+                    <Button text="Добавить в корзину" onClick={addToOrder} />
                 </Footer>
             </Modal>
         </Overlay>

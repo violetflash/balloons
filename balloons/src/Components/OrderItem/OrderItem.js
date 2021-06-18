@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import Delete from '../../images/delete.png';
 
 const DeleteBtn = styled.button`
-  position:relative;
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  
+
   width: 40px;
   height: 30px;
   padding: 0;
@@ -18,20 +18,20 @@ const DeleteBtn = styled.button`
   background-size: contain;
   background-repeat: no-repeat;
   cursor: pointer;
-  
+
   &::before {
     position: absolute;
     content: 'Удалить';
     right: -170%;
     padding: 5px;
-    background-color:#fff;
+    background-color: #fff;
     border: 1px solid #CCCCCC;
     visibility: hidden;
     opacity: 0;
     border-radius: 10px;
     transition: all 0.3s ease;
   }
-  
+
   &:hover {
     &::before {
       visibility: visible;
@@ -41,29 +41,57 @@ const DeleteBtn = styled.button`
 `;
 
 const Item = styled.li`
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;  
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
+  width: 100%;
+  padding: 10px 0 10px 20px;
+  border-bottom: 1px solid #ccc;
   
-  span {
-    margin-right: 15px;
+  &::before {
+    position: absolute;
+    content: attr(data-index);
+    left: 0;
   }
-  
 `;
 
-const OrderItem = props => {
+const Image = styled.img`
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin-left: 30px;
+
+`;
+
+const Name = styled.span`
+  flex-grow: 1;
+  margin-left: 30px;
+`;
+
+const Quantity = styled.span`
+  margin-right: 20px;
+  min-width: 45px;
+  text-align: right;
+`;
+
+const Price = styled.span`
+  margin-right: 20px;
+  min-width: 150px;
+  text-align:right;
+`;
+
+const OrderItem = ({ order, index }) => {
     return (
-        <Item>
-            <span>Леди Баг</span>
-            <span>10</span>
-            <span>62 руб.</span>
-            <DeleteBtn />
+        <Item data-index={index + ')'}>
+            <Image src={order.img}/>
+            <Name>{order.name}</Name>
+            <Quantity>1</Quantity>
+            <Price>{order.price} руб.</Price>
+            <DeleteBtn/>
         </Item>
 
-    )
+    );
 
 };
 

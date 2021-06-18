@@ -42,11 +42,11 @@ const Btn = styled.button`
 
 `;
 
-const Button = props => {
+const Button = ({ text, onClick }) => {
     return (
         <BtnWrapper>
             <BtnLayer/>
-            <Btn>{props.text}</Btn>
+            <Btn onClick={onClick}>{text}</Btn>
         </BtnWrapper>
     )
 

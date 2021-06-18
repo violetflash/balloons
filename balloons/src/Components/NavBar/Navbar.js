@@ -132,7 +132,21 @@ const CartIconBox = styled.span`
     background-color: rgba(0, 0, 0, 0.06);
     transform: translateX(-100%);
   }
+`;
 
+const CartItemsCounter = styled.span`
+  position: absolute;
+  content: '';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #fff;
+  top: 0;
+  
 `;
 
 const Cart = styled.button`
@@ -204,6 +218,7 @@ const Navbar = ({ setOpenOrder, openOrder }) => {
                 <Cart onClick={() => setOpenOrder('Order')}>
                     <CartIconBox>
                         <CartIcon src={cart}/>
+                        <CartItemsCounter>4</CartItemsCounter>
                     </CartIconBox>
                     <CartInfo>
                         Итого:

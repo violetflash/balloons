@@ -23,7 +23,7 @@ const Modal = styled.div`
   justify-content: center;
   flex-direction: column;
   background-color: Cornsilk;
-  width: 80vw;
+  width: 80%;
   padding: 20px 40px;
   //height: 600px;
   //min-height: 70vh;
@@ -92,9 +92,9 @@ const OrderList = styled.ul`
 
 const Total = styled.div`
   display: flex;
-  margin-bottom: 40px;
+  margin: 0 40px 40px 0;
   max-width: 100%;
-  width: 100%;
+  //width: 100%;
 
   & span:first-child {
     flex-grow: 1;
@@ -115,8 +115,23 @@ const Footer = styled.footer`
   }
 `;
 
+const TotalQuantity = styled.span`
+  min-width: 45px;
+  text-align: right;
+`;
 
-const Checkout = ({openOrder, setOpenOrder}) => {
+const TotalSum = styled.span`
+  text-align: right;
+  min-width: 150px;
+  margin: 0 20px;
+`;
+
+const EmptyList = styled.div`
+  
+`;
+
+
+const Checkout = ({setOpenOrder, orders}) => {
 
     const closeModal = (e) => {
         if (e.target.id === 'overlay' || e.target.id === 'closeBtn') {
@@ -124,29 +139,26 @@ const Checkout = ({openOrder, setOpenOrder}) => {
         }
     };
 
-    if (!openOrder) {
-        return null;
-    }
-
     return (
         <Overlay id="overlay" onClick={closeModal}>
             <Modal>
                 <Close id="closeBtn"/>
                 <Title>Ваш Заказ</Title>
                 <Content>
-                    <OrderList>
-                        <OrderItem/>
-                        <OrderItem/>
-                        <OrderItem/>
-                    </OrderList>
+                    {orders.length ?
+                        <OrderList>
+                            {orders.map((item, index) => <OrderItem key={item.id} order={item} index={index + 1}/>)}
+                        </OrderList> :
+                        <EmptyList>Вы ничего не добавили в корзину</EmptyList>
+                    }
                     <Total>
                         <span>Итого:</span>
-                        <span>5</span>
-                        <span>850 р.</span>
+                        <TotalQuantity>5</TotalQuantity>
+                        <TotalSum>35850 руб.</TotalSum>
                     </Total>
                 </Content>
                 <Footer>
-                    <Button text="Оформить покупку"/>
+                    <Button text="Оформить Заказ"/>
                 </Footer>
             </Modal>
         </Overlay>
