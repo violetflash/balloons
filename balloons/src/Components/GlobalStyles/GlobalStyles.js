@@ -4,6 +4,7 @@ import {createGlobalStyle} from "styled-components";
 const GlobalStyle = createGlobalStyle`
   html {
     box-sizing: border-box;
+    height: 100%;
   }
   
   *,
@@ -18,6 +19,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-size: 20px;
     font-family: Roboto, sans-serif;
+    height: calc(100% - 100px);
+    overflow-x: hidden;
 
   }
   
@@ -47,6 +50,11 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+  
+  #root {
+    height: 100%;
+  }
+  
 `;
 
 const GlobalStyles = props => {

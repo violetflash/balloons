@@ -152,7 +152,13 @@ const Footer = styled.footer`
   }
 `;
 
-const ModalItem = ({ openItem, setOpenItem, orders, setOrders, setOrderItemsCounter, orderItemsCounter }) => {
+const ModalItem = (
+    {
+        openItem, setOpenItem,
+        orders, setOrders,
+        setOrderItemsCounter, orderItemsCounter,
+        addToCartPopup, setAddToCartPopup,
+    }) => {
 
     const closeModal = e => {
         if (e.target.id === 'overlay' || e.target.id === 'closeBtn') {
@@ -165,12 +171,31 @@ const ModalItem = ({ openItem, setOpenItem, orders, setOrders, setOrderItemsCoun
     };
 
     const addToOrder = () => {
-        console.log(orders);
+
+        const actualOrders = {...orders};
+        for (const order in actualOrders) {
+            if (newOrder.name === actualOrders[order].name) {
+                console.log("Уже такой есть!");
+                //Увеличиваем количество товара в заказе на 1
+            } else {
+
+            }
+        }
+
         setOrders([...orders, newOrder]); //обновляем стейт заказов, деструктурируя уже имеющиеся заказы и добавляя
         // новый
         setOpenItem(null);  //закрываем окно товара, обновляя стейт на null
         setOrderItemsCounter(orderItemsCounter + 1);
-        console.log(orderItemsCounter)
+
+
+        setAddToCartPopup(openItem);
+
+        let timeoutId;
+
+        timeoutId = setTimeout(() => {
+            setAddToCartPopup(null);
+            clearTimeout(timeoutId);
+        }, 3000)
     };
 
 
@@ -199,7 +224,7 @@ const ModalItem = ({ openItem, setOpenItem, orders, setOrders, setOrderItemsCoun
                     </InfoLines>
                 </ModalInfo>
                 <Footer>
-                    <Button text="Добавить в корзину" onClick={addToOrder} />
+                    <Button text="Добавить в корзину" onClick={() => addToOrder()} />
                 </Footer>
             </Modal>
         </Overlay>

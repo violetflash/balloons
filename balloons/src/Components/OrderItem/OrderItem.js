@@ -45,7 +45,6 @@ const Item = styled.li`
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
   width: 100%;
   padding: 10px 0 10px 20px;
   border-bottom: 1px solid #ccc;
@@ -60,7 +59,8 @@ const Item = styled.li`
 const ItemInfo = styled.div`
   display: flex;
   align-items: center;
-  
+  //max-width: 400px;
+  margin-right: 20px;
   flex-grow: 1;
 `;
 
@@ -92,8 +92,8 @@ const Image = styled.div`
     border-radius: 50%;
     opacity: 0;
     visibility: hidden;
-    right: -200px;
-    bottom: 50%;
+    right: -220px;
+    //bottom: 50%;
     transition: all 0.3s ease-in-out;
   }
   
@@ -108,6 +108,7 @@ const Image = styled.div`
 
 const Name = styled.span`
   margin-left: 10px;
+  font-weight: 700;
 `;
 
 const Type = styled.span`
@@ -130,14 +131,19 @@ const Price = styled.span`
   text-align:right;
 `;
 
+const VendorCode = styled.span`
+  margin-left: 5px;
+`;
+
 const OrderItem = ({ order, index }) => {
     return (
         <Item data-index={index + ')'}>
             <ItemInfo>
                 <Image src={order.img} img={order.img}/>
-                <Type>{capitalizer(order.type)}</Type>
-                <SubType>{order.subType}:</SubType>
+                {order.type && <Type>{capitalizer(order.type)}</Type>}
+                {order.subType && <SubType>{order.subType}:</SubType>}
                 <Name>"{order.name}"</Name>
+                <VendorCode>(арт. {'000' + order.id})</VendorCode>
             </ItemInfo>
             <Quantity>1</Quantity>
             <Price>{order.price} руб.</Price>

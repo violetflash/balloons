@@ -139,8 +139,8 @@ const CartItemsCounter = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  min-width: 26px;
+  font-size: 14px;
+  width: 26px;
   height: 26px;
   padding: 0 5px;
   border-radius: 50%;
@@ -218,14 +218,24 @@ const LoginButton = styled.button`
   }
 `;
 
-const Navbar = ({ setOpenOrder, orderItemsCounter }) => {
-    console.log(Boolean(orderItemsCounter));
+const Navbar = (
+    {
+        setOpenOrder, orderItemsCounter,
+        mainPageOpen, setMainPageOpen,
+    }) => {
+
+    const cartButtonHandler = () => {
+        setMainPageOpen(null);
+        setOpenOrder(true);
+    };
+
     return (
         <NavBarStyled>
             <Logo />
             <H1>Магазин воздушных шаров</H1>
+            {/*<H1>Надуем по полной!</H1>*/}
             <Controls>
-                <Cart onClick={() => setOpenOrder('Order')}>
+                <Cart onClick={cartButtonHandler}>
                     {orderItemsCounter && <CartItemsCounter>{orderItemsCounter}</CartItemsCounter>}
                     <CartIconBox>
                         <CartIcon src={cart}/>

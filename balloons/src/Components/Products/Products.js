@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import ListItem from "../ListItem/ListItem";
 import db from './db';
-import Button from "../Button/Button";
 
 const MenuStyled = styled.main`
   //background-color: #fff;
@@ -21,7 +20,7 @@ const Section = styled.section`
   padding: 20px 0 40px 0;
 `;
 
-const Menu = ({ setOpenItem }) => {
+const Products = ({ setOpenItem }) => {
 
     return (
         <MenuStyled>
@@ -45,4 +44,4 @@ const Menu = ({ setOpenItem }) => {
 
 };
 
-export default Menu;
+export default Products;
