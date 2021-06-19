@@ -7,7 +7,9 @@ const Popup = styled.article`
   right: 20px;
   padding: 10px 25px;
   font-size: 16px;
-  background-color: #FFFBEC;
+  //background-color: #FFFBEC;
+  background-color: #83698c;
+  color: white;
   border-radius: 10px;
   //border: 2px solid #ccc;
   max-width: 350px;
@@ -23,8 +25,10 @@ const Item = styled.span`
   position: relative;
   padding: 0 5px;
   font-size: 20px;
+  border-radius: 4px;
   //color: palevioletred;
   text-align: center;
+  color: black;
   margin: 10px 0;
   background-color: #f1dada;
 
