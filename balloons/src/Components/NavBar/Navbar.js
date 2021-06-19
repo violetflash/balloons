@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import baloons from '../../images/baloons2.png';
 import Logo from '../Logo/Logo';
 import cart from '../../images/cart.png';
+import ActiveIndexState from "../Hooks/ActiveIndexState/ActiveIndexState";
 
 const Header = styled.header`
   position: fixed;
@@ -33,7 +34,7 @@ const HeaderBottom = styled.div`
   align-items: center;
   justify-content: flex-end;
   
-  height: 20px;
+  //height: 20px;
   //padding: 0 40px;
   margin-right: 95px;
 `;
@@ -290,7 +291,8 @@ const LoginButton = styled.button`
   }
 `;
 
-
+// const activeIndexState = ActiveIndexState();
+//https://stackoverflow.com/questions/61377356/using-hooks-to-set-active-classname
 
 const Navbar = (
     {

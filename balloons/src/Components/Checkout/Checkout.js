@@ -111,11 +111,12 @@ const Title = styled.h1`
 `;
 
 const OrderList = styled.ul`
-  margin-bottom: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto 40px;
 
 
 `;
@@ -126,7 +127,10 @@ const Total = styled.div`
   background-color: rgba(79, 42, 109, 0.3);
   padding: 20px 40px;
   //max-width: 100%;
+  max-width: 1200px;
+  margin: 0 auto 40px;
   width: 100%;
+  
   margin-bottom: 30px;
 
   & span:first-child {
