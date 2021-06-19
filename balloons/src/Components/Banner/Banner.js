@@ -10,7 +10,7 @@ const BannerSection = styled.section`
   justify-content: center;
   background-color: paleturquoise;
   padding-bottom: 20px;
-  
+
 
 `;
 
@@ -26,28 +26,32 @@ const BannerWrapper = styled.article`
 `;
 
 const PercentsImg = styled.img`
-    max-width: 650px;
+  max-width: 650px;
+  
+  @media (max-width: 1200px) {
+    max-width: 400px;
+  }
 `;
 
 const Discount = styled.h1`
   font-size: 48px;
-  text-transform:uppercase;
+  text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 10px;
   //color: darkgoldenrod;
 `;
 
 const Arrow = styled.p`
-  position:relative;
+  position: relative;
   margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 16px;
   opacity: 0.7;
-  
+
   &::after {
-    position:absolute;
+    position: absolute;
     content: '';
     right: -40px;
     width: 26px;

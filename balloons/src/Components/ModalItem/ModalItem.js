@@ -18,28 +18,29 @@ const Overlay = styled.div`
 const Modal = styled.div`
   position:relative;
   display: flex;
-  align-items: center;
+  //align-items: center;
   justify-content: center;
-  flex-direction: column;
+  //flex-direction: column;
   background-color: Cornsilk;
-  width: 600px;
-  padding-bottom: 20px;
+  max-width: 800px;
+  //padding-bottom: 20px;
   //height: 600px;
-  min-height: 500px;
+  //min-height: 500px;
   border-radius: 10px;
   z-index: 100;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 
   @media (max-width: 1200px) {
-    width: 500px;
-    height: 500px;
+    //width: 500px;
+    //height: 500px;
   }
 
 `;
 
 const BannerWrapper = styled.div`
-  height: 400px;
-  width: 100%;
+  //flex: 0 1 400px;
+  min-height: 400px;
+  width: 400px;
   background-color:#fff;
   border-radius: 10px;
   
@@ -51,20 +52,26 @@ const BannerWrapper = styled.div`
 `;
 
 const Banner = styled.div`
-  width: 70%;
+  width: 95%;
   height: 100%;
   background-color: #fff;
   background-image: url(${( ({ img }) => img)});
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  margin: 0 auto 20px;
+  margin: 0 auto;
 `;
 
 const ModalInfo = styled.div`
+  display: flex;
+  //align-items: center;
+  //justify-content: center;
+  flex-direction: column;
   padding: 10px 40px;
   font-size: 16px;
-  
+  max-width: 450px;
+  min-height: 100%;
+  padding-bottom: 20px;
 `;
 
 const Name = styled.h3`
@@ -91,6 +98,10 @@ const InfoLines = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 0 0 10px 0;
+  
+  span {
+    //display: block;
+  }
 `;
 
 const Close = styled.button`
@@ -133,14 +144,30 @@ const Close = styled.button`
 `;
 
 const Description = styled.p`
+  padding: 5px 15px;
   font-size: 14px;
   margin-bottom: 10px;
   text-indent: 1.5rem;
   line-height: 1.3;
   text-align: justify;
+  max-height: 200px;
+  overflow-y: auto;
+`;
+
+const ModalContent = styled.div`
+  
+  flex: 1 0 auto;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  //justify-content: center;
+  flex-direction: column;
+  //max-height: 400px;
+  //overflow-y: scroll;
 `;
 
 const Footer = styled.footer`
+  flex: 0 0 auto;
   width: 100%;
   display: flex;
   align-items: center;
@@ -207,25 +234,28 @@ const ModalItem = (
                     <Banner img={openItem.img}/>
                 </BannerWrapper>
                 <ModalInfo>
-                    <Name>{openItem.name}</Name>
-                    <Description>{openItem.description}</Description>
-                    <InfoLines>
-                        <InfoLine>Артикул: <span>{'000' + openItem.id}</span></InfoLine>
-                        <InfoLine>Размер: <span>{openItem.size}</span></InfoLine>
-                        <InfoLine>Страна: <span>{openItem.country}</span></InfoLine>
-                        <InfoLine>Цена:
-                            <span>
+                    <ModalContent>
+                        <Name>{openItem.name}</Name>
+                        <Description>{openItem.description}</Description>
+                        <InfoLines>
+                            <InfoLine>Артикул: <span>{'000' + openItem.id}</span></InfoLine>
+                            <InfoLine>Размер: <span>{openItem.size}</span></InfoLine>
+                            <InfoLine>Страна: <span>{openItem.country}</span></InfoLine>
+                            <InfoLine>Цена:
+                                <span>
                                 {openItem.price.toLocaleString('ru-RU', {
                                     style: 'currency',
                                     currency: 'RUB'
                                 })}
                             </span>
-                        </InfoLine>
-                    </InfoLines>
+                            </InfoLine>
+                        </InfoLines>
+                    </ModalContent>
+                    <Footer>
+                        <Button text="Добавить в корзину" onClick={() => addToOrder()} />
+                    </Footer>
                 </ModalInfo>
-                <Footer>
-                    <Button text="Добавить в корзину" onClick={() => addToOrder()} />
-                </Footer>
+
             </Modal>
         </Overlay>
     );

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const Popup = styled.article`
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: 20px;
+  right: 20px;
   padding: 10px 25px;
   font-size: 16px;
   background-color: #FFFBEC;
