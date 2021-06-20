@@ -197,6 +197,18 @@ const ModalItem = (
         ...openItem,
     };
 
+    const debounce = (func, delay=2000) => {
+        let timeoutId;
+
+        return (...args) => {   // return (arg1, arg2, arg3) => {
+            if ( timeoutId ) clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                //
+                func.apply(null, args); // like 'func(arg1, arg2, arg3)' - apply automatically keeps track of how many arguments we need to pass through
+            }, delay);
+        };
+    };
+
     const addToOrder = () => {
 
         const actualOrders = {...orders};
@@ -214,15 +226,10 @@ const ModalItem = (
         setOpenItem(null);  //закрываем окно товара, обновляя стейт на null
         setOrderItemsCounter(orderItemsCounter + 1);
 
-
         setAddToCartPopup(openItem);
 
-        let timeoutId;
+        setTimeout(setAddToCartPopup, 2000, null)
 
-        timeoutId = setTimeout(() => {
-            setAddToCartPopup(null);
-            clearTimeout(timeoutId);
-        }, 3000)
     };
 
 

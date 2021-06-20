@@ -13,14 +13,12 @@ import AddToCartPopupElem from "./Components/AddToCartPopupElem/AddToCartPopupEl
 import AddToCartPopupState from "./Components/Hooks/AddToCartPopupState/AddToCartPopupState";
 import MainPageState from "./Components/Hooks/MainPageState/MainPageState";
 import Footer from "./Components/Footer/Footer";
+import NavActiveIndexState from "./Components/Hooks/NavActiveIndexState/NavActiveIndexState";
 
 
 
 const App = () => {
 
-    //openItem - будет содержать данные о товаре, который откроется в модальном окне.
-    //ф-ия setOpenItem - будет назначать, какой это будет товар (по которому кликнули) и будет запускать перерендер
-    // компонента
     //Хуки
     const openItemState = UseOpenItemState();
     const openOrderState = UseOpenOrderState();
@@ -28,15 +26,16 @@ const App = () => {
     const orderItemsCounter = OrderItemsCounterState();
     const orderPopup = AddToCartPopupState();
     const mainPageStatus = MainPageState();
+    const indexState = NavActiveIndexState();
 
 
 
     return (
         <React.Fragment>
             <GlobalStyles />
-            <NavBar {...openOrderState} {...orderItemsCounter} {...mainPageStatus}/>
+            <NavBar {...openOrderState} {...orderItemsCounter} {...mainPageStatus} {...indexState}/>
             {mainPageStatus.mainPageOpen && <Banner />}
-            {mainPageStatus.mainPageOpen && <Products {...openItemState} />} {/*JSX SPREAD ATTRIBUTE PATTERN*/}
+            {mainPageStatus.mainPageOpen && <Products {...openItemState} />}
             {openItemState.openItem && <ModalItem {...openItemState} {...orders} {...orderItemsCounter} {...orderPopup}/>}
             {openOrderState.openOrder && <Checkout {...openOrderState} {...orders} {...orderItemsCounter} {...mainPageStatus}/>}
             {orderPopup.addToCartPopup && <AddToCartPopupElem  {...orderPopup}/>}

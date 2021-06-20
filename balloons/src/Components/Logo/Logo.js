@@ -3,16 +3,18 @@ import styled from 'styled-components';
 import line from "../../images/Line1.svg";
 
 const Logotype = styled.div`
-  position: relative;
+  position: absolute;
   display: flex;
   align-items: center;
-  margin-left: 15px;
+  
+  left: 20px;
+  top: 20px;
 
   & p {
     position: relative;
     font-family: 'Amatic SC', cursive;
     font-size: 40px;
-    margin-top: 75px;
+    //margin-top: 75px;
     padding: 5px 15px 15px;
     background-color: palevioletred;
     border-radius: 50%;

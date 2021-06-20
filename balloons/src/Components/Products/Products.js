@@ -24,10 +24,13 @@ const Products = ({ setOpenItem }) => {
 
     return (
         <MenuStyled>
+            {/*<Menu>*/}
+
+            {/*</Menu>*/}
             <Section>
                 <h3>Шары фольгированные</h3>
                 <ListItem
-                    itemList={db.foiled}
+                    itemList={db.foiled.child}
                     setOpenItem={setOpenItem}
                 />
             </Section>

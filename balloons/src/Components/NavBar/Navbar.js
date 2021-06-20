@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import baloons from '../../images/baloons2.png';
 import Logo from '../Logo/Logo';
 import cart from '../../images/cart.png';
-import ActiveIndexState from "../Hooks/ActiveIndexState/ActiveIndexState";
 
 const Header = styled.header`
   position: fixed;
@@ -14,56 +13,60 @@ const Header = styled.header`
   width: 100vw;
   padding-top: 10px;
   background-color: #fae3d9;
-  border-bottom: 10px solid palevioletred;
+  border-bottom: 6px solid palevioletred;
 `;
 
 const HeaderTop = styled.div`
   
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding-right: 30px;
+  //padding-right: 30px;
   
   //background-color: #f5d7ae;
-  height: 70px;
+  //height: 70px;
   color: black;
+  margin-bottom: 10px;
 `;
 
 const HeaderBottom = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  align-items: flex-end;
+  justify-content: center;
   
   //height: 20px;
   //padding: 0 40px;
-  margin-right: 95px;
+  //margin-right: 95px;
 `;
 
 const Menu = styled.nav`
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: flex-end;
   //padding: 15px 0 10px;
   //background-color: #fff;
   border-radius: 4px 4px 0 0;
   background-color: palevioletred;
-  margin-left: auto;
+  //margin-left: auto;
+  //margin-right: 40px;
+  margin-bottom: -1px;
   height: 100%;
   color: white;
+  z-index: 10;
 `;
 
 const NavLink = styled.a`
-  position:relative;
+  position: relative;
   display: block;
-  padding: 5px 10px;
+  padding: 5px 15px;
   font-size: 16px;
-  margin: 5px 10px 0;
-  border-radius: 4px;
-  transition: all 0.3s ease-in-out;
+  margin: 5px 5px 0;
+  border-radius: 4px 4px 0 0;
+  transition: all 0.3s ease;
   cursor: pointer;
   overflow: hidden;
   color: #fae3d9;
-  
+
 
   //&::before {
   //  position: absolute;
@@ -81,14 +84,14 @@ const NavLink = styled.a`
 
   &:hover {
     //background-color: #7f6689;
-    background-color: #fae3d9;
-    color: #A4687B;
+    background-color: rgba(0, 0, 0, 0.15);
+    //color: #A4687B;
     //color: #fff;
     &::before {
       transform: translateX(0);
     }
   }
-  
+
   &.active {
     background-color: #fae3d9;
     color: #A4687B;
@@ -102,7 +105,6 @@ const H1 = styled.h1`
   color: #A4687B;
   //font-family: 'Philosopher', sans-serif;
   font-family: 'Amatic SC', cursive;
-
   z-index: 5;
 
   &::before {
@@ -114,30 +116,46 @@ const H1 = styled.h1`
     background-position: center;
     background-size: 135px;
     background-repeat: no-repeat;
-    top: 55%;
+    top: 90%;
     transform: translateY(-50%) rotate(-45deg);
-    left: -20%;
+    left: -30%;
     z-index: -1;
   }
 
-  @media (max-width: 992px) {
-    display: none;
-    font-size: 34px;
+  &::after {
+    position: absolute;
+    content: '';
+    width: 75px;
+    height: 100px;
+    background-image: url(${baloons});
+    background-position: center;
+    background-size: 135px;
+    background-repeat: no-repeat;
+    top: 90%;
+    transform: translateY(-50%) rotate(395deg) scaleX(-1);
+    right: -28%;
+    z-index: -1;
+    
+  }
 
-    &::before {
-      position: absolute;
-      content: '';
-      width: 75px;
-      height: 100px;
-      background-image: url(${baloons});
-      background-position: center;
-      background-size: 100px;
-      background-repeat: no-repeat;
-      top: 55%;
-      transform: translateY(-50%) rotate(-45deg);
-      left: -50px;
-      z-index: -1;
-    }
+  @media (max-width: 992px) {
+    // display: none;
+    // font-size: 34px;
+    //
+    // &::before {
+    //   position: absolute;
+    //   content: '';
+    //   width: 75px;
+    //   height: 100px;
+    //   background-image: url(${baloons});
+    //   background-position: center;
+    //   background-size: 100px;
+    //   background-repeat: no-repeat;
+    //   top: 53%;
+    //   transform: translateY(-50%) rotate(-45deg);
+    //   left: -50px;
+    //   z-index: -1;
+    // }
   }
 `;
 
@@ -178,9 +196,12 @@ const Login = styled.div`
 `;
 
 const Controls = styled.div`
+  position: absolute;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  bottom: 0;
+  right: 40px;
 `;
 
 
@@ -189,10 +210,10 @@ const CartIconBox = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 15px;
+  padding: 5px 15px;
   background-color: palevioletred;
   height: 100%;
-  border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 0px;
   overflow: hidden;
 
   &::before {
@@ -234,12 +255,12 @@ const Cart = styled.button`
   display: flex;
   align-items: center;
   padding: 0;
-  border-radius: 4px;
+  border-radius: 4px 4px 0 0;
   //height: 32px;
   //background-color: rgba(144, 139, 140, 0.7);
   background-color: rgba(79, 42, 109, 0.6);
 
-  border: 1px solid #eee;
+  border: none;
   min-width: 200px;
   cursor: pointer;
   font-family: Roboto, sans-serif;
@@ -293,7 +314,7 @@ const LoginButton = styled.button`
 
 const links = ['Главная', 'О нас', 'Доставка и оплата', 'Контакты'];
 
-// const activeIndexState = ActiveIndexState();
+
 //https://stackoverflow.com/questions/61377356/using-hooks-to-set-active-classname
 
 const Navbar = (
@@ -307,21 +328,39 @@ const Navbar = (
     const cartButtonHandler = () => {
         setMainPageOpen(null);
         setOpenOrder(true);
+        setActiveIndex(null);
     };
 
-    const linkHandler = (index) => {
-        console.log(index);
-        return setActiveIndex(index);
-        // setMainPageOpen(true);
-        // setOpenOrder(null);
+    const linkHandler = (index, element) => {
+        if (element === 'Главная') {
+            setMainPageOpen(true);
+        }
+
+        setOpenOrder(null);
+        setActiveIndex(index);
+
     };
 
     return (
         <Header>
+            <Logo/>
             <HeaderTop>
-                <Logo/>
                 <H1>Магазин воздушных шаров</H1>
-                {/*<H1>Надуем по полной!</H1>*/}
+            </HeaderTop>
+            <HeaderBottom>
+                <Menu>
+                    {links.map((element, index) => {
+                        return (
+                            <NavLink
+                                key={index}
+                                onClick={() => linkHandler(index, element)}
+                                className={activeIndex === index ? "active" : null}
+                            >
+                                {element}
+                            </NavLink>
+                        )
+                    })}
+                </Menu>
                 <Controls>
                     <Cart onClick={cartButtonHandler}>
                         {orderItemsCounter && <CartItemsCounter>{orderItemsCounter}</CartItemsCounter>}
@@ -355,25 +394,6 @@ const Navbar = (
 
                     </Login>
                 </Controls>
-            </HeaderTop>
-            <HeaderBottom>
-                <Menu>
-                    {links.map((element, index) => {
-                        return (
-                            <NavLink
-                                key={index}
-                                onClick={() => linkHandler(index)}
-                                className={activeIndex === index ? "active" : "inactive"}
-                            >
-                                {element}
-                            </NavLink>
-                        )
-                    })}
-                    {/*<NavLink id="mainPage" className="active" onClick={linkHandler}>Главная</NavLink>*/}
-                    {/*<NavLink>О нас</NavLink>*/}
-                    {/*<NavLink>Доставка и оплата</NavLink>*/}
-                    {/*<NavLink>Контакты</NavLink>*/}
-                </Menu>
             </HeaderBottom>
         </Header>
     )

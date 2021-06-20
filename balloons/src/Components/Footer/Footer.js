@@ -22,7 +22,7 @@ const Title = styled.h1`
 const Footer = props => {
     return (
         <FooterBlock>
-            <Title>СПЛОШНОЕ НАДУВАТЕЛЬСТВО, &copy;</Title>
+            <Title>ИП Надувалов Ш.А., &copy;</Title>
 
         </FooterBlock>
     )

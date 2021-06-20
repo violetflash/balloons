@@ -39,6 +39,7 @@ const Item = styled.figure`
   z-index: 1;
   color: #fff;
   text-align: left;
+  
 
   &::before {
     position: absolute;
@@ -109,8 +110,12 @@ const CardInfo = styled.aside`
   width: 100%;
   padding-left: 20px;
   //background-color: #f5d7ae;
-  background-color: rgba(209, 143, 57, 0.4);
+  background-color: rgba(241, 207, 166, 0.4);
   //background-color: #fae3d9;
+  box-shadow: inset 0 19px 38px rgba(255, 94, 94, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  //border-bottom: 1px solid #CCCCCC;
+
+
 `;
 
 const Price = styled.p`

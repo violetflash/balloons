@@ -179,19 +179,10 @@ const MainFooter = styled.div`
 const Checkout = (
     {
         setOpenOrder, orders,
-        mainPageOpen, setMainPageOpen,
     }) => {
 
-    const closeCheckout = (e) => {
-        if (e.target.id === 'closeBtn') {
-            setMainPageOpen(true);
-            setOpenOrder(null);
-        }
-    };
-
     return (
-        <Order id="checkout" onClick={closeCheckout}>
-            <Close id="closeBtn"/>
+        <Order id="checkout" >
             <Title>Ваш Заказ</Title>
             <Wrapper>
                 <Content>
