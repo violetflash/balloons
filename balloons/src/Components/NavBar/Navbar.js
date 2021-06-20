@@ -55,9 +55,9 @@ const Menu = styled.nav`
 const NavLink = styled.a`
   position:relative;
   display: block;
-  padding: 0 10px;
+  padding: 5px 10px;
   font-size: 16px;
-  margin: 10px 10px 0;
+  margin: 5px 10px 0;
   border-radius: 4px;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
@@ -291,6 +291,8 @@ const LoginButton = styled.button`
   }
 `;
 
+const links = ['Главная', 'О нас', 'Доставка и оплата', 'Контакты'];
+
 // const activeIndexState = ActiveIndexState();
 //https://stackoverflow.com/questions/61377356/using-hooks-to-set-active-classname
 
@@ -298,16 +300,20 @@ const Navbar = (
     {
         setOpenOrder, orderItemsCounter,
         mainPageOpen, setMainPageOpen,
+        activeIndex, setActiveIndex
     }) => {
+
 
     const cartButtonHandler = () => {
         setMainPageOpen(null);
         setOpenOrder(true);
     };
 
-    const mainPageLinkHandler = () => {
-        setMainPageOpen(true);
-        setOpenOrder(null);
+    const linkHandler = (index) => {
+        console.log(index);
+        return setActiveIndex(index);
+        // setMainPageOpen(true);
+        // setOpenOrder(null);
     };
 
     return (
@@ -352,10 +358,21 @@ const Navbar = (
             </HeaderTop>
             <HeaderBottom>
                 <Menu>
-                    <NavLink className="active" onClick={mainPageLinkHandler}>Главная</NavLink>
-                    <NavLink>О нас</NavLink>
-                    <NavLink>Доставка и оплата</NavLink>
-                    <NavLink>Контакты</NavLink>
+                    {links.map((element, index) => {
+                        return (
+                            <NavLink
+                                key={index}
+                                onClick={() => linkHandler(index)}
+                                className={activeIndex === index ? "active" : "inactive"}
+                            >
+                                {element}
+                            </NavLink>
+                        )
+                    })}
+                    {/*<NavLink id="mainPage" className="active" onClick={linkHandler}>Главная</NavLink>*/}
+                    {/*<NavLink>О нас</NavLink>*/}
+                    {/*<NavLink>Доставка и оплата</NavLink>*/}
+                    {/*<NavLink>Контакты</NavLink>*/}
                 </Menu>
             </HeaderBottom>
         </Header>

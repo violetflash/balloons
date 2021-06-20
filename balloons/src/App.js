@@ -40,7 +40,7 @@ const App = () => {
             {openItemState.openItem && <ModalItem {...openItemState} {...orders} {...orderItemsCounter} {...orderPopup}/>}
             {openOrderState.openOrder && <Checkout {...openOrderState} {...orders} {...orderItemsCounter} {...mainPageStatus}/>}
             {orderPopup.addToCartPopup && <AddToCartPopupElem  {...orderPopup}/>}
-            {mainPageStatus.mainPageOpen && <Footer {...openOrderState} {...orderItemsCounter} {...mainPageStatus}/>}
+            {mainPageStatus.mainPageOpen && <Footer/>}
         </React.Fragment>
     );
 

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 const ActiveIndexState = () => {
-    const [activeIndex, setActiveIndex] = useState(true);
+    const [activeIndex, setActiveIndex] = useState('mainPage');
 
     return { activeIndex, setActiveIndex };
 }

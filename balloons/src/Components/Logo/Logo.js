@@ -12,7 +12,7 @@ const Logotype = styled.div`
     position: relative;
     font-family: 'Amatic SC', cursive;
     font-size: 40px;
-    margin-top: 55px;
+    margin-top: 75px;
     padding: 5px 15px 15px;
     background-color: palevioletred;
     border-radius: 50%;
