@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Delete from '../../../images/delete.png';
-import { capitalizer } from "../../utils/utils";
+import { capitalizer, calcProductTotal, rubCurrencyPrice } from "../../utils/utils";
 
 const DeleteBtn = styled.button`
   position: relative;
@@ -127,13 +127,21 @@ const Quantity = styled.span`
 
 const Price = styled.span`
   margin-right: 20px;
-  min-width: 150px;
+  min-width: 90px;
   text-align:right;
 `;
 
 const VendorCode = styled.span`
   margin-left: 5px;
 `;
+
+const Total = styled.span`
+  margin-left: 10px;
+  //font-weight: 700;
+  min-width: 100px;
+  text-align:right;
+`;
+
 
 const CartItem = ({ order, index }) => {
 
@@ -148,7 +156,8 @@ const CartItem = ({ order, index }) => {
                 <VendorCode>(арт. {'000' + order.id})</VendorCode>
             </ItemInfo>
             <Quantity>{order.count}</Quantity>
-            <Price>{order.price} руб.</Price>
+            <Price>{rubCurrencyPrice(order.price)}</Price>
+            <Total>{rubCurrencyPrice(calcProductTotal(order))}</Total>
             <DeleteBtn/>
         </Item>
 

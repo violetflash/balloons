@@ -7,8 +7,21 @@ const rubCurrencyPrice = price => {
     });
 };
 
+const calcProductTotal = order => order.price * order.count;
+
+const getTotalQuantity = arr => {
+    return arr.reduce((accum, curr) => accum + curr.count, 0);
+};
+
+const getTotalCartSum = arr => {
+    return arr.reduce((accum, curr) => accum + calcProductTotal(curr), 0);
+}
+
 export {
     capitalizer,
     rubCurrencyPrice,
+    calcProductTotal,
+    getTotalQuantity,
+    getTotalCartSum
 };
 

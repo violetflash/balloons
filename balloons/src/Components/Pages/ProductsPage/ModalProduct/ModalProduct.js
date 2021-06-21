@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from '../../Elements/Button/Button';
+import Button from '../../../Elements/Button/Button';
 import styled from 'styled-components';
 import CountProduct from "../CountProduct/CountProduct";
-import ProductCountState from "../../Hooks/ProuctCountState/ProuctCountState";
-import { rubCurrencyPrice } from "../../utils/utils";
+import ProductCountState from "../../../Hooks/ProuctCountState/ProuctCountState";
+import {rubCurrencyPrice, calcProductTotal} from "../../../utils/utils";
 
 const Overlay = styled.div`
   position: fixed;
@@ -58,7 +58,7 @@ const Banner = styled.div`
   width: 95%;
   height: 100%;
   background-color: #fff;
-  background-image: url(${(({ img }) => img)});
+  background-image: url(${(({img}) => img)});
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -91,7 +91,7 @@ const InfoLine = styled.p`
   margin-bottom: 5px;
   padding: 5px;
   padding-left: 0;
-  
+
 
   span {
     font-weight: 400;
@@ -102,7 +102,7 @@ const InfoLine = styled.p`
 const InfoLines = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin: 0 0 10px 0;
+  //margin: 0 0 10px 0;
 
   span {
     //display: block;
@@ -149,7 +149,7 @@ const Close = styled.button`
 `;
 
 const Description = styled.p`
-  padding: 5px 15px 5px 0;
+  padding: 5px 0;
   font-size: 14px;
   margin-bottom: 10px;
   text-indent: 1.5rem;
@@ -169,6 +169,8 @@ const ModalContent = styled.div`
   flex-direction: column;
   //max-height: 400px;
   //overflow-y: scroll;
+  margin-right: 15px;
+  border-bottom: 1px solid #CCCCCC;
 `;
 
 const Footer = styled.footer`
@@ -188,8 +190,23 @@ const TotalSum = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 30px;
+`;
+
+const Sum = styled.span`
+  font-weight: 700;
+  margin-left: 10px;
+`;
+
+const Amount = styled.div`
+  display: flex;
+  align-items: center;
+  //justify-content: space-evenly;
+  padding-top: 10px;
+  margin: 0;
   margin-bottom: 20px;
-  
+
+
 `;
 
 const ModalProduct = (
@@ -215,14 +232,19 @@ const ModalProduct = (
 
     const addToOrder = () => {
 
-        const actualOrders = { ...orders };
-        for (const order in actualOrders) {
-            if (newOrder.name === actualOrders[order].name) {
-                console.log("Уже такой есть!");
-                //Увеличиваем количество товара в заказе на 1
-            } else {
 
-            }
+
+
+        const checkItemAlreadyInCart = orders.findIndex((order) => {
+            return order.id === newOrder.id;
+        });
+
+        if (checkItemAlreadyInCart >= 0) {
+            orders[checkItemAlreadyInCart].count += newOrder.count;
+            setOpenItem(null);
+            setAddToCartPopup(openItem);
+            setTimeout(setAddToCartPopup, 1500, null);
+            return;
         }
 
         setOrders([...orders, newOrder]); //обновляем стейт заказов, деструктурируя уже имеющиеся заказы и добавляя
@@ -256,10 +278,12 @@ const ModalProduct = (
                             </InfoLine>
                         </InfoLines>
                     </ModalContent>
-                    <CountProduct {...counter}/>
-                    {counter.count > 1 && <TotalSum>
-                        <span>{rubCurrencyPrice(openItem.price)} * {counter.count} = {rubCurrencyPrice(openItem.price * counter.count)}</span>
-                    </TotalSum>}
+                    <Amount>
+                        <CountProduct {...counter}/>
+                        {counter.count > 1 && <TotalSum>
+                            <span> Сумма: <Sum>{rubCurrencyPrice(calcProductTotal(newOrder))}</Sum> </span>
+                        </TotalSum>}
+                    </Amount>
                     <Footer>
                         <Button text="Добавить в корзину" onClick={() => addToOrder()}/>
                     </Footer>

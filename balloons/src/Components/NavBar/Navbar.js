@@ -4,6 +4,8 @@ import baloons from '../../images/baloons2.png';
 import Logo from '../Elements/Logo/Logo';
 import cart from '../../images/cart.png';
 
+import { rubCurrencyPrice, getTotalCartSum } from "../utils/utils";
+
 const Header = styled.header`
   position: fixed;
   top: 0;
@@ -289,12 +291,6 @@ const CartTotal = styled.span`
   font-weight: 700;
   margin: 0 5px 0 5px;
   padding-right: 5px;
-
-  &::after {
-    content: 'руб.';
-    padding-left: 5px;
-    font-weight: 400;
-  }
 `;
 
 
@@ -320,21 +316,17 @@ const links = ['Главная', 'О нас', 'Доставка и оплата'
 const Navbar = (
     {
         setOpenOrder, orderItemsCounter,
-        mainPageOpen, setMainPageOpen,
-        activeIndex, setActiveIndex
+        activeIndex, setActiveIndex,
+        orders
     }) => {
 
 
     const cartButtonHandler = () => {
-        setMainPageOpen(null);
         setOpenOrder(true);
         setActiveIndex(null);
     };
 
-    const linkHandler = (index, element) => {
-        if (element === 'Главная') {
-            setMainPageOpen(true);
-        }
+    const linkHandler = (index) => {
 
         setOpenOrder(null);
         setActiveIndex(index);
@@ -369,7 +361,7 @@ const Navbar = (
                         </CartIconBox>
                         <CartInfo>
                             Итого:
-                            <CartTotal>0</CartTotal>
+                            <CartTotal>{orders ? rubCurrencyPrice(getTotalCartSum(orders)) : rubCurrencyPrice(0) }</CartTotal>
                         </CartInfo>
                     </Cart>
                     <Login>

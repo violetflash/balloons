@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-size: 20px;
     font-family: Roboto, sans-serif;
-    height: calc(100% - 100px);
+    height: calc(100% - 110px);
     overflow-x: hidden;
 
   }

@@ -5,7 +5,6 @@ const CountWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 15px 20px 0;
 `;
 
 const Counter = styled.div`
@@ -51,7 +50,7 @@ const CountProduct = ({ count, setCount, onChange }) => {
 
     return (
         <CountWrapper>
-            <span>Количество:</span>
+            {/*<span>Количество:</span>*/}
             <Counter>
                 <ButtonCount disabled={count <= 1} onClick={() => setCount(count - 1)} val={count}>-</ButtonCount>
                 <CountInput value={count < 1 ? 1 : count} onChange={onChange}/>
