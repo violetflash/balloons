@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import rusFlag from '../../images/rus.png';
-import spainFlag from '../../images/spain.png';
+import rusFlag from '../../../images/rus.png';
+import spainFlag from '../../../images/spain.png';
 
 
 const countries = {
@@ -146,7 +146,7 @@ const Price = styled.p`
 
 
 
-const ListItem = ({ itemList, setOpenItem }) => {
+const ListProducts = ({ itemList, setOpenItem }) => {
     return (
         <List>
             {itemList.map(item => (
@@ -172,4 +172,4 @@ const ListItem = ({ itemList, setOpenItem }) => {
 
 };
 
-export default ListItem;
+export default ListProducts;

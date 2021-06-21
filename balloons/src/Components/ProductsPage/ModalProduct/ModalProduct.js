@@ -1,6 +1,9 @@
 import React from 'react';
-import Button from '../Button/Button';
+import Button from '../../Elements/Button/Button';
 import styled from 'styled-components';
+import CountProduct from "../CountProduct/CountProduct";
+import ProductCountState from "../../Hooks/ProuctCountState/ProuctCountState";
+import { rubCurrencyPrice } from "../../utils/utils";
 
 const Overlay = styled.div`
   position: fixed;
@@ -16,7 +19,7 @@ const Overlay = styled.div`
 `;
 
 const Modal = styled.div`
-  position:relative;
+  position: relative;
   display: flex;
   //align-items: center;
   justify-content: center;
@@ -41,10 +44,10 @@ const BannerWrapper = styled.div`
   //flex: 0 1 400px;
   min-height: 400px;
   width: 400px;
-  background-color:#fff;
+  background-color: #fff;
   border-radius: 10px;
-  
-  
+
+
   @media (max-width: 1200px) {
     //height: 200px;
   }
@@ -55,7 +58,7 @@ const Banner = styled.div`
   width: 95%;
   height: 100%;
   background-color: #fff;
-  background-image: url(${( ({ img }) => img)});
+  background-image: url(${(({ img }) => img)});
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -87,7 +90,9 @@ const InfoLine = styled.p`
   font-weight: 700;
   margin-bottom: 5px;
   padding: 5px;
+  padding-left: 0;
   
+
   span {
     font-weight: 400;
     margin-left: 15px;
@@ -98,7 +103,7 @@ const InfoLines = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 0 0 10px 0;
-  
+
   span {
     //display: block;
   }
@@ -144,7 +149,7 @@ const Close = styled.button`
 `;
 
 const Description = styled.p`
-  padding: 5px 15px;
+  padding: 5px 15px 5px 0;
   font-size: 14px;
   margin-bottom: 10px;
   text-indent: 1.5rem;
@@ -155,7 +160,7 @@ const Description = styled.p`
 `;
 
 const ModalContent = styled.div`
-  
+
   flex: 1 0 auto;
   flex-grow: 1;
   display: flex;
@@ -173,19 +178,29 @@ const Footer = styled.footer`
   align-items: center;
   justify-content: center;
   padding: 0 40px;
-  
+
   div {
     margin: 0;
   }
 `;
 
-const ModalItem = (
+const TotalSum = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  
+`;
+
+const ModalProduct = (
     {
         openItem, setOpenItem,
         orders, setOrders,
         setOrderItemsCounter, orderItemsCounter,
         addToCartPopup, setAddToCartPopup,
     }) => {
+
+    const counter = ProductCountState();
 
     const closeModal = e => {
         if (e.target.id === 'overlay' || e.target.id === 'closeBtn') {
@@ -195,23 +210,12 @@ const ModalItem = (
 
     const newOrder = {
         ...openItem,
-    };
-
-    const debounce = (func, delay=2000) => {
-        let timeoutId;
-
-        return (...args) => {   // return (arg1, arg2, arg3) => {
-            if ( timeoutId ) clearTimeout(timeoutId);
-            timeoutId = setTimeout(() => {
-                //
-                func.apply(null, args); // like 'func(arg1, arg2, arg3)' - apply automatically keeps track of how many arguments we need to pass through
-            }, delay);
-        };
+        count: counter.count
     };
 
     const addToOrder = () => {
 
-        const actualOrders = {...orders};
+        const actualOrders = { ...orders };
         for (const order in actualOrders) {
             if (newOrder.name === actualOrders[order].name) {
                 console.log("Уже такой есть!");
@@ -228,7 +232,7 @@ const ModalItem = (
 
         setAddToCartPopup(openItem);
 
-        setTimeout(setAddToCartPopup, 2000, null)
+        setTimeout(setAddToCartPopup, 1500, null);
 
     };
 
@@ -248,18 +252,16 @@ const ModalItem = (
                             <InfoLine>Артикул: <span>{'000' + openItem.id}</span></InfoLine>
                             <InfoLine>Размер: <span>{openItem.size}</span></InfoLine>
                             <InfoLine>Страна: <span>{openItem.country}</span></InfoLine>
-                            <InfoLine>Цена:
-                                <span>
-                                {openItem.price.toLocaleString('ru-RU', {
-                                    style: 'currency',
-                                    currency: 'RUB'
-                                })}
-                            </span>
+                            <InfoLine>Цена:<span>{rubCurrencyPrice(openItem.price)}</span>
                             </InfoLine>
                         </InfoLines>
                     </ModalContent>
+                    <CountProduct {...counter}/>
+                    {counter.count > 1 && <TotalSum>
+                        <span>{rubCurrencyPrice(openItem.price)} * {counter.count} = {rubCurrencyPrice(openItem.price * counter.count)}</span>
+                    </TotalSum>}
                     <Footer>
-                        <Button text="Добавить в корзину" onClick={() => addToOrder()} />
+                        <Button text="Добавить в корзину" onClick={() => addToOrder()}/>
                     </Footer>
                 </ModalInfo>
 
@@ -269,4 +271,4 @@ const ModalItem = (
 
 };
 
-export default ModalItem;
+export default ModalProduct;

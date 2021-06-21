@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import baloons from '../../images/baloons2.png';
-import Logo from '../Logo/Logo';
+import Logo from '../Elements/Logo/Logo';
 import cart from '../../images/cart.png';
 
 const Header = styled.header`
@@ -198,9 +198,9 @@ const Login = styled.div`
 const Controls = styled.div`
   position: absolute;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  bottom: 0;
+  bottom: 20px;
   right: 40px;
 `;
 
@@ -210,10 +210,10 @@ const CartIconBox = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px 15px;
+  padding: 10px 15px;
   background-color: palevioletred;
   height: 100%;
-  border-radius: 4px 0 0 0px;
+  border-radius: 4px 0 0 4px;
   overflow: hidden;
 
   &::before {
@@ -255,7 +255,7 @@ const Cart = styled.button`
   display: flex;
   align-items: center;
   padding: 0;
-  border-radius: 4px 4px 0 0;
+  border-radius: 4px;
   //height: 32px;
   //background-color: rgba(144, 139, 140, 0.7);
   background-color: rgba(79, 42, 109, 0.6);

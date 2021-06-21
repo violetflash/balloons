@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Delete from '../../images/delete.png';
-import { capitalizer } from "../utils/utils";
+import Delete from '../../../images/delete.png';
+import { capitalizer } from "../../utils/utils";
 
 const DeleteBtn = styled.button`
   position: relative;
@@ -135,7 +135,9 @@ const VendorCode = styled.span`
   margin-left: 5px;
 `;
 
-const OrderItem = ({ order, index }) => {
+const CartItem = ({ order, index }) => {
+
+
     return (
         <Item data-index={index + ')'}>
             <ItemInfo>
@@ -145,7 +147,7 @@ const OrderItem = ({ order, index }) => {
                 <Name>"{order.name}"</Name>
                 <VendorCode>(арт. {'000' + order.id})</VendorCode>
             </ItemInfo>
-            <Quantity>1</Quantity>
+            <Quantity>{order.count}</Quantity>
             <Price>{order.price} руб.</Price>
             <DeleteBtn/>
         </Item>
@@ -154,4 +156,4 @@ const OrderItem = ({ order, index }) => {
 
 };
 
-export default OrderItem;
+export default CartItem;

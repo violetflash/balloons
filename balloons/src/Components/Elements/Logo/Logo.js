@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import line from "../../images/Line1.svg";
+import line from "../../../images/Line1.svg";
 
 const Logotype = styled.div`
   position: absolute;

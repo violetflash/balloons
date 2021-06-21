@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from '../Button/Button';
+import Button from '../../Elements/Button/Button';
 import styled from 'styled-components';
-import OrderItem from "../OrderItem/OrderItem";
-import Footer from "../Footer/Footer";
+import OrderItem from "../CartItem/CartItem";
+import Footer from "../../Elements/Footer/Footer";
 
 // const Overlay = styled.div`
 //   position: fixed;
@@ -61,43 +61,6 @@ const Content = styled.div`
   //max-height: 60vh;
   font-size: 16px;
 
-`;
-
-const Close = styled.button`
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &::before,
-  &::after {
-    position: absolute;
-    content: '';
-    width: 40px;
-    height: 4px;
-    background-color: #f1dbaf;
-    border-radius: 10px;
-    transform: rotate(45deg);
-    transition: all 0.2s;
-  }
-
-  &::before {
-    transform: rotate(-45deg);
-  }
-
-  &:hover {
-    &::before,
-    &::after {
-      background-color: rgba(0, 0, 0, 0.7);
-    }
-  }
 `;
 
 const Title = styled.h1`
@@ -176,7 +139,7 @@ const MainFooter = styled.div`
   width: 100%;
 `;
 
-const Checkout = (
+const Cart = (
     {
         setOpenOrder, orders,
     }) => {
@@ -211,4 +174,4 @@ const Checkout = (
 
 };
 
-export default Checkout;
+export default Cart;

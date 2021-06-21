@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ListItem from "../ListItem/ListItem";
+import ListProducts from "../ListProducts/ListProducts";
 import db from './db';
 
 const MenuStyled = styled.main`
@@ -29,7 +29,7 @@ const Products = ({ setOpenItem }) => {
             {/*</Menu>*/}
             <Section>
                 <h3>Шары фольгированные</h3>
-                <ListItem
+                <ListProducts
                     itemList={db.foiled.child}
                     setOpenItem={setOpenItem}
                 />
@@ -37,7 +37,7 @@ const Products = ({ setOpenItem }) => {
 
             <Section>
                 <h3>Другие товары</h3>
-                <ListItem
+                <ListProducts
                     itemList={db.other}
                     setOpenItem={setOpenItem}
                 />
