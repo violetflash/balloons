@@ -69,12 +69,12 @@ const Input = styled.input`
 `;
 
 
-const Additions = ({ additional }) => {
+const Additions = ({ additional, id }) => {
     return (
         <CheckBoxesWrapper>
-            {additional.map(add => {
+            {additional.map((add, index) => {
                 return (
-                    <Checkbox>
+                    <Checkbox key={index + '' + id}>
                         <Input type="checkbox"/>
                         <Text>{add}</Text>
                     </Checkbox>

@@ -278,7 +278,7 @@ const ModalProduct = (
                             </InfoLine>
                         </InfoLines>
                     </ModalContent>
-                    {openItem.additional && <Additions additional={openItem.additional}/>}
+                    {openItem.additional && <Additions additional={openItem.additional} id={openItem.id}/>}
 
                     <Amount>
                         <CountProduct {...counter}/>
