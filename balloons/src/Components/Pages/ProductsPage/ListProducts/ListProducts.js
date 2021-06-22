@@ -31,7 +31,7 @@ const Item = styled.figure`
   height: 200px;
   margin: 0;
   background-color: #fff;
-  background-image: ${({img}) => `url(${img})`};
+  background-image: url(${(({img}) => img)});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

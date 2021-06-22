@@ -14,8 +14,6 @@ const OrderList = styled.ul`
   flex-direction: column;
   max-width: 1200px;
   margin: 0 auto 40px;
-
-
 `;
 
 const Total = styled.div`
@@ -37,10 +35,7 @@ const Total = styled.div`
     flex-grow: 1;
     text-align: center;
   }
-
-
 `;
-
 
 const CheckoutFooter = styled.footer`
   width: 300px;
@@ -81,7 +76,6 @@ const EmptyList = styled.div`
   text-align:center;
   margin-bottom: 40px;
 `;
-
 
 
 const Cart = (

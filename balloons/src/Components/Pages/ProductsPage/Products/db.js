@@ -411,7 +411,7 @@ const db = {
     other: [
         {
             name: 'Ручной насос',
-            img: '/baloons/other/01.jpg',
+            img: './baloons/other/01.jpg',
             id: 901,
             price: 250,
             size: '48см',
@@ -420,7 +420,7 @@ const db = {
         },
         {
             name: 'Стойка для шаров',
-            img: '/baloons/other/02.jpg',
+            img: './baloons/other/02.jpg',
             id: 902,
             price: 1340,
             size: '150см/48см',
@@ -429,7 +429,7 @@ const db = {
         },
         {
             name: 'Сетка для сброса / запуска шаров',
-            img: '/baloons/other/03.jpg',
+            img: './baloons/other/03.jpg',
             id: 903,
             price: 900,
             size: '200см * 100см',
@@ -438,7 +438,7 @@ const db = {
         },
         {
             name: 'Конфетти, квадраты',
-            img: '/baloons/other/04.jpg',
+            img: './baloons/other/04.jpg',
             id: 904,
             price: 980,
             size: 'квадраты 2см',
@@ -447,7 +447,7 @@ const db = {
         },
         {
             name: 'Воздух',
-            img: '/baloons/other/05.jpg',
+            img: './baloons/other/05.jpg',
             id: 905,
             price: 2600,
             size: 'без размера',

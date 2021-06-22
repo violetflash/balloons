@@ -207,8 +207,6 @@ const Amount = styled.div`
   border-top: 1px solid #CCCCCC;
   margin: 0;
   margin-bottom: 20px;
-
-
 `;
 
 const ModalProduct = (
@@ -280,7 +278,7 @@ const ModalProduct = (
                             </InfoLine>
                         </InfoLines>
                     </ModalContent>
-                    <Additions />
+                    {openItem.additional && <Additions additional={openItem.additional}/>}
 
                     <Amount>
                         <CountProduct {...counter}/>

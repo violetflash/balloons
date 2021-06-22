@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import db from '../Products/db';
-
 
 const CheckBoxesWrapper = styled.div`
-  padding: 5px 0;
+  padding-top: 10px;
   column-count: 2;
+  column-gap: 15px;
+  max-width: 500px;
 `;
 
 const Checkbox = styled.label`
   position: relative;
   display: block;
+  margin-bottom: 10px;
 `;
 
 const Text = styled.span`
@@ -22,7 +23,8 @@ const Text = styled.span`
   color: #1a1a1a;
   letter-spacing: -0.3px;
   cursor: pointer;
-
+  max-width: 150px;
+  
   &::before {
     content: "";
     align-items: flex-start;
@@ -41,9 +43,7 @@ const Text = styled.span`
     width: 9px;
     height: 9px;
     left: 3px;
-    //top: 3px;
     background-color: palevioletred;
-    //transform: scale(0.5);
     opacity: 0;
     transition: all 0.15s cubic-bezier(0.47, 1.01, 0.75, 0.97);
   }
@@ -69,10 +69,10 @@ const Input = styled.input`
 `;
 
 
-const Additions = () => {
+const Additions = ({ additional }) => {
     return (
         <CheckBoxesWrapper>
-            {db.child.additional && db.child.additional.map(add => {
+            {additional.map(add => {
                 return (
                     <Checkbox>
                         <Input type="checkbox"/>
@@ -83,7 +83,6 @@ const Additions = () => {
 
         </CheckBoxesWrapper>
     );
-
 };
 
 export default Additions;
