@@ -5,6 +5,7 @@ import CountProduct from "../CountProduct/CountProduct";
 import ProductCountState from "../../../Hooks/ProuctCountState/ProuctCountState";
 import {rubCurrencyFormat, calcProductTotal} from "../../../utils/utils";
 import Additions from "../Additions/Additions";
+import AdditionalsState from "../../../Hooks/AdditionalsState/AdditionalsState";
 
 const Overlay = styled.div`
   position: fixed;
@@ -218,6 +219,7 @@ const ModalProduct = (
     }) => {
 
     const counter = ProductCountState();
+    const additionsState = AdditionalsState(openItem);
 
     const closeModal = e => {
         if (e.target.id === 'overlay' || e.target.id === 'closeBtn') {
@@ -227,7 +229,8 @@ const ModalProduct = (
 
     const newOrder = {
         ...openItem,
-        count: counter.count
+        count: counter.count,
+        adds: additionsState.additionalItems
     };
 
     const addToOrder = () => {
@@ -239,7 +242,11 @@ const ModalProduct = (
             return order.id === newOrder.id;
         });
 
-        if (checkItemAlreadyInCart >= 0) {
+        const checkAdds = () => {
+            return JSON.stringify(orders[checkItemAlreadyInCart].adds) === JSON.stringify(newOrder.adds);
+        };
+
+        if (checkItemAlreadyInCart >= 0 && checkAdds()) {
             orders[checkItemAlreadyInCart].count += newOrder.count;
             setOpenItem(null);
             setAddToCartPopup(openItem);
@@ -278,11 +285,11 @@ const ModalProduct = (
                             </InfoLine>
                         </InfoLines>
                     </ModalContent>
-                    {openItem.additional && <Additions additional={openItem.additional} id={openItem.id}/>}
+                    {openItem.additional && <Additions price={openItem.price} id={openItem.id} {...additionsState}/>}
 
                     <Amount>
                         <CountProduct {...counter}/>
-                        {counter.count > 1 && <TotalSum>
+                        {<TotalSum>
                             <span> Сумма: <Sum>{rubCurrencyFormat(calcProductTotal(newOrder))}</Sum> </span>
                         </TotalSum>}
                     </Amount>

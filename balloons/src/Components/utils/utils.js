@@ -7,7 +7,18 @@ const rubCurrencyFormat = price => {
     });
 };
 
-const calcProductTotal = order => order.price * order.count;
+const calcProductTotal = order => {
+
+    if (order.adds) {
+        const countAdds = order.adds.filter(item => item.checked).length;
+        const price = Math.round(order.price * 0.1);
+        const TotalAddsSum = price * countAdds;
+
+        return (order.price + TotalAddsSum) * order.count ;
+    }
+
+    return order.price * order.count;
+}
 
 const getTotalQuantity = arr => {
     return arr.reduce((accum, curr) => accum + curr.count, 0);

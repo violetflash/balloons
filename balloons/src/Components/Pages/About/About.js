@@ -1,22 +1,89 @@
 import React from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 import { Wrapper, Content, MainFooter, MainTitle, Main } from '../../Elements/PageElements/PageElements';
 import Footer from "../../Elements/Footer/Footer";
+import office from '../../../images/office.jpg';
 
-
+const AboutContent = styled.article`
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  p {
+    text-align: justify;
+    text-indent: 35px;
+    margin-bottom: 20px;
+  }
+  
+  figure {
+    float: right;
+    margin: 0 0 0 35px;
+    max-width: 390px;
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    
+    img {
+      vertical-align: middle;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+`;
 
 const About = () => {
     return (
         <Wrapper>
             <Content>
                 <Main>
-                    <MainTitle>О нас:</MainTitle>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores dicta ducimus esse harum labore nesciunt quis vel! Ducimus fuga molestias velit. A assumenda ea impedit rem repellendus. Obcaecati, soluta.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores dicta ducimus esse harum labore nesciunt quis vel! Ducimus fuga molestias velit. A assumenda ea impedit rem repellendus. Obcaecati, soluta.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores dicta ducimus esse harum labore nesciunt quis vel! Ducimus fuga molestias velit. A assumenda ea impedit rem repellendus. Obcaecati, soluta.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores dicta ducimus esse harum labore nesciunt quis vel! Ducimus fuga molestias velit. A assumenda ea impedit rem repellendus. Obcaecati, soluta.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores dicta ducimus esse harum labore nesciunt quis vel! Ducimus fuga molestias velit. A assumenda ea impedit rem repellendus. Obcaecati, soluta.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores dicta ducimus esse harum labore nesciunt quis vel! Ducimus fuga molestias velit. A assumenda ea impedit rem repellendus. Obcaecati, soluta.
+                    <AboutContent>
+                        <MainTitle>О нас:</MainTitle>
+                        <figure>
+                            <img src={office} alt=""/>
+                        </figure>
+                        <p>
+                            Официальной датой начала работы компании  принято считать
+                            1 августа 2006 года. Именно в этот день была совершена первая реализация воздушных шаров одному из клиентов г.Екатеринбург.
+                        </p>
+                        <p>
+                            В преддверии первой продажи создателями компании был проведён глубокий анализ рынка воздушных
+                            шаров, карнавальной продукции и подарочной упаковки в России, странах Европы и Северной Америки.
+                            Рынок воздушных шаров, карнавальной продукции и подарочной упаковки привлёк своей приятной
+                            атмосферой праздника, хорошего настроения и яркими воспоминаниями майских и ноябрьских
+                            демонстраций, в которых участвовал каждый житель бывшего Советского Союза, и главным атрибутом
+                            которых были разноцветные воздушные шары. Точная оценка существующего спроса со стороны
+                            покупателей и тенденций мирового рынка позволили к 1 августа 2006 года сформировать первичный
+                            ассортиментный портфель и представить на суд покупателей Урала, Поволжья и Западной Сибири новые
+                            виды воздушных шаров и карнавальной продукции. Большая часть покупателей, свободных в своём
+                            выборе и независящих от чужих часто навязанных мнений, положительно восприняла нового оптового
+                            поставщика воздушных шаров и карнавальной продукции. У покупателей появилась возможность
+                            приобретать новый товар, доступ к которому ранее был закрыт или ограничен из-за высокой цены,
+                            к тому же с более привлекательными свойствами и характеристиками.
+                        </p>
+                        <p>Сегодня мы - самостоятельное независимое предприятие. Это позволяет нам представлять на
+                            рынке России именно те товары, которые действительно востребованы и интересны для компаний,
+                            частных лиц, профессионально занимающихся декорированием с применением воздушных шаров, а также
+                            для компаний, занимающихся розничной и оптовой продажей воздушных шаров, карнавальной продукции,
+                            товаров для праздников, упаковки для подарков и цветов. Всемирно признанный брэнд воздушных
+                            шаров «Sempertex» Колумбия не был известен отечественным покупателям до того момента, пока наша
+                            компания не представила его в максимальном ассортименте. В своей работе мы ориентируемся
+                            на желания наших покупателей и, исходя из них, проводим поиск производителей по всему миру,
+                            оцениваем качество и конкурентоспособность их продукции, а затем импортируем в Россию именно
+                            те товары, которые требует от нас покупатель с выгодными для него ценовыми и качественными
+                            характеристиками.
+                        </p>
+                        <p>
+                            Наша компания – это команда людей, получивших образование уже в новых для России рыночных
+                            условиях. Именно в них работать нам наиболее комфортно. Мы сталкиваемся с тем, чему нас учили,
+                            мы можем проявить себя как настоящие профессионалы – люди, умеющие делать свою работу лучше и
+                            эффективнее других. Все наши зарубежные поставщики, имеющие большую и успешную историю
+                            работы по всему миру, наше торговое предприятие и наши покупатели, – все мы стараемся работать
+                            как единая команда, связанная одной цепью производства, поставок и распределения продукции на
+                            всей территории России, Казахстана, Белоруссии, Армении и Киргизии.
+                        </p>
+                    </AboutContent>
+
                 </Main>
             </Content>
             <MainFooter>

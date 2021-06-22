@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {rubCurrencyFormat} from "../../../utils/utils";
 
 const CheckBoxesWrapper = styled.div`
   padding-top: 10px;
@@ -23,7 +24,8 @@ const Text = styled.span`
   color: #1a1a1a;
   letter-spacing: -0.3px;
   cursor: pointer;
-  max-width: 150px;
+  //max-width: 150px;
+  
   
   &::before {
     content: "";
@@ -68,20 +70,30 @@ const Input = styled.input`
   }
 `;
 
+const Title = styled.span`
+  //text-align:center;
+  padding-top: 5px;
+`;
 
-const Additions = ({ additional, id }) => {
+
+const Additions = ({ additional, id, additionalItems, checkAdditions, price }) => {
+    const cost = Math.round(price * 0.1);
     return (
-        <CheckBoxesWrapper>
-            {additional.map((add, index) => {
-                return (
-                    <Checkbox key={index + '' + id}>
-                        <Input type="checkbox"/>
-                        <Text>{add}</Text>
-                    </Checkbox>
-                );
-            })}
+        <>
+            <Title>Дополнительно (+{rubCurrencyFormat(cost)}):</Title>
+            <CheckBoxesWrapper>
+                {additionalItems.map((item, index) => {
+                    return (
+                        <Checkbox key={index + '' + id}>
+                            <Input type="checkbox" checked={item.checked} onChange={() => checkAdditions(index)} />
+                            <Text>{item.name}</Text>
+                        </Checkbox>
+                    );
+                })}
 
-        </CheckBoxesWrapper>
+            </CheckBoxesWrapper>
+        </>
+
     );
 };
 

@@ -142,10 +142,26 @@ const Total = styled.span`
   text-align:right;
 `;
 
+const Adds = styled.span`
+  
+  
+  span {
+    position:relative;
+    margin-left: 5px;
+    background-color: #e5e5e5;
+    padding: 5px;
+    padding-left: 15px;
+    &::before {
+      position: absolute;
+      content: '+';
+      left: 5px;
+    }
+  }
+`;
+
 
 const CartItem = ({ order, index }) => {
-
-
+    const adds = order.adds ? order.adds.filter(item => item.checked) : null;
     return (
         <Item data-index={index + ')'}>
             <ItemInfo>
@@ -154,6 +170,7 @@ const CartItem = ({ order, index }) => {
                 {order.subType && <SubType>{order.subType}:</SubType>}
                 <Name>"{order.name}"</Name>
                 <VendorCode>(арт. {'000' + order.id})</VendorCode>
+                {order.adds && <Adds>{adds.map((item, index) => <span key={index}>{item.name}</span>)}</Adds>}
             </ItemInfo>
             <Quantity>{order.count}</Quantity>
             <Price>{rubCurrencyFormat(order.price)}</Price>
