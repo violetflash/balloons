@@ -308,7 +308,7 @@ const LoginButton = styled.button`
   }
 `;
 
-const links = ['Главная', 'О нас', 'Доставка и оплата', 'Контакты'];
+const links = ['Шары и фигуры', 'О компании', 'Доставка и оплата', 'Контакты', 'Корзина'];
 
 
 //https://stackoverflow.com/questions/61377356/using-hooks-to-set-active-classname
@@ -322,13 +322,13 @@ const Navbar = (
 
 
     const cartButtonHandler = () => {
-        setOpenOrder(true);
-        setActiveIndex(null);
+        // setOpenOrder(true);
+        setActiveIndex(4);
     };
 
     const linkHandler = (index) => {
 
-        setOpenOrder(null);
+        // setOpenOrder(null);
         setActiveIndex(index);
 
     };

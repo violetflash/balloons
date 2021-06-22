@@ -19,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-size: 20px;
     font-family: Roboto, sans-serif;
-    height: calc(100% - 110px);
+    height: 100%;
     overflow-x: hidden;
 
   }
@@ -53,6 +53,7 @@ const GlobalStyle = createGlobalStyle`
   
   #root {
     height: 100%;
+    margin: 0;
   }
   
 `;

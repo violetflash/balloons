@@ -1,22 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Wrapper, Content, MainFooter, MainTitle } from '../../Elements/PageElements/PageElements';
+import { Wrapper, Content, MainFooter, MainTitle } from "../../Elements/PageElements/PageElements";
 import Footer from "../../Elements/Footer/Footer";
 
-
-
-const About = () => {
+const Contacts = () => {
     return (
         <Wrapper>
             <Content>
-                <MainTitle>О нас:</MainTitle>
+                <MainTitle>Наши контакты</MainTitle>
             </Content>
             <MainFooter>
                 <Footer />
             </MainFooter>
         </Wrapper>
-    )
+    );
 
 };
 
-export default About;
+export default Contacts;

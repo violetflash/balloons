@@ -4,50 +4,8 @@ import styled from 'styled-components';
 import OrderItem from "../CartItem/CartItem";
 import Footer from "../../Elements/Footer/Footer";
 import { getTotalQuantity, getTotalCartSum, rubCurrencyPrice } from "../../utils/utils";
+import { Wrapper, Content, MainFooter, MainTitle } from "../../Elements/PageElements/PageElements";
 
-
-const Order = styled.div`
-  position: relative;
-  margin-top: 100px;
-  height: 100%;
-  //min-height: calc(100% - 100px);
-  //display: flex;
-  //align-items: center;
-  //justify-content: center;
-  //flex-direction: column;
-  overflow-x: hidden;
-`;
-
-const Wrapper = styled.div`
-  min-height: calc(100% - 110px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-`;
-
-const Content = styled.div`
-  width: 100%;
-  flex: 1 0 auto;
-  padding: 0 40px;
-  //max-height: 60vh;
-  font-size: 16px;
-`;
-
-const MainFooter = styled.div`
-  flex: 0 0 auto;
-  width: 100%;
-`;
-
-const Title = styled.h1`
-  //background-color: rgba(79,42,109,0.4);
-  //background-color: palevioletred;
-  //color: #fff;
-  width: 100%;
-  padding: 20px 40px;
-  margin-bottom: 20px;
-  text-align: center;
-`;
 
 const OrderList = styled.ul`
   display: flex;
@@ -119,7 +77,9 @@ const TotalSum = styled.span`
 `;
 
 const EmptyList = styled.div`
-
+  padding: 15px 0;
+  text-align:center;
+  margin-bottom: 40px;
 `;
 
 
@@ -131,31 +91,30 @@ const Cart = (
 
 
     return (
-        <Order id="checkout" >
-            <Title>Ваш Заказ</Title>
-            <Wrapper>
-                <Content>
-                    {orders.length ?
-                        <OrderList>
-                            {orders.map((item, index) => <OrderItem key={item.id} order={item} index={index + 1}/>)}
-                        </OrderList> :
-                        <EmptyList>Вы ничего не добавили в корзину</EmptyList>
-                    }
-                    <Total>
-                        <span>Итого:</span>
-                        <TotalQuantity>{getTotalQuantity(orders)}</TotalQuantity>
-                        <TotalSum>{rubCurrencyPrice(getTotalCartSum(orders))}</TotalSum>
-                    </Total>
-                    <CheckoutFooter>
-                        <Button text="Оформить Заказ"/>
-                    </CheckoutFooter>
-                </Content>
+        <Wrapper id="checkout">
+            <Content>
+                <MainTitle>Ваш Заказ</MainTitle>
+                {orders.length ?
+                    <OrderList>
+                        {orders.map((item, index) => <OrderItem key={item.id} order={item} index={index + 1}/>)}
+                    </OrderList> :
+                    <EmptyList>Вы пока ничего не добавили в корзину...</EmptyList>
+                }
+                <Total>
+                    <span>Итого:</span>
+                    <TotalQuantity>{getTotalQuantity(orders)}</TotalQuantity>
+                    <TotalSum>{rubCurrencyPrice(getTotalCartSum(orders))}</TotalSum>
+                </Total>
+                <CheckoutFooter>
+                    {orders.length > 0 && <Button text="Оформить Заказ"/>}
+                </CheckoutFooter>
+            </Content>
 
-                <MainFooter>
-                    <Footer/>
-                </MainFooter>
-            </Wrapper>
-        </Order>
+            <MainFooter>
+                <Footer/>
+            </MainFooter>
+        </Wrapper>
+
     );
 
 };

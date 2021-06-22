@@ -41,20 +41,30 @@ const Item = styled.figure`
   text-align: left;
   
 
-  &::before {
+  //&::before {
+  //  position: absolute;
+  //  content: '';
+  //  width: 100%;
+  //  height: 100%;
+  //  left: 0;
+  //  top: 0;
+  //  background-color: Cornsilk;
+  //  opacity: 10%;
+  //  z-index: -1;
+  //}
+
+  &::after {
     position: absolute;
     content: '';
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background-color: Cornsilk;
-    opacity: 10%;
-    z-index: -1;
-  }
-
-  &:hover {
-    //transform: scale(1.5) translateY(-5px);
+    left: 10px;
+    bottom 10px;
+    width: 16px;
+    height: 11px;
+    background-image: ${({ country }) => {
+      return `url(${countries[country]})`
+    }};
+    background-size: 16px;
+    z-index: 1;
   }
 `;
 
@@ -128,25 +138,23 @@ const Price = styled.p`
   padding: 0 0 5px;
   font-size: 14px;
   color: #000;
+`;
 
-  &::after {
-    position: absolute;
-    content: '';
-    right: 10px;
-    width: 16px;
-    height: 11px;
-    background-image: ${({ country }) => {
-      return `url(${countries[country]})`
-    }};
-    background-size: 16px;
-  }
+const InCart = styled.span`
+  position: absolute;
+  right: 10px;
 `;
 
 
 
+const ListProducts = ({ itemList, setOpenItem, orders }) => {
 
+    const checkItemInCart = (item) => {
+        return orders.findIndex(order => {
+            return order.id === item.id;
+        })
+    };
 
-const ListProducts = ({ itemList, setOpenItem }) => {
     return (
         <List>
             {itemList.map(item => (
@@ -158,13 +166,14 @@ const ListProducts = ({ itemList, setOpenItem }) => {
 
                     <CardInfo>
                         <Name>{item.name}</Name>
-                        <Price country={item.country}>{item.price.toLocaleString('ru-RU', {
+                        <Price>{item.price.toLocaleString('ru-RU', {
                             style: 'currency',
                             currency: 'RUB'
                         })}
+                            {checkItemInCart(item) >= 0 && <InCart>В корзине: {orders[checkItemInCart(item)].count} шт.</InCart>}
                         </Price>
                     </CardInfo>
-                    <Item img={item.img}/>
+                    <Item img={item.img} country={item.country}/>
                 </Card>
             ))}
         </List>

@@ -8,8 +8,8 @@ const Popup = styled.article`
   padding: 10px 25px;
   font-size: 16px;
   //background-color: #FFFBEC;
-  background-color: #83698c;
-  color: white;
+  background-color: #abe3e3;
+  color: #1a1a1a;
   border-radius: 10px;
   //border: 2px solid #ccc;
   max-width: 350px;

@@ -4,7 +4,6 @@ import percents from '../../../../images/percents.png'
 import point from '../../../../images/point.png'
 
 const BannerSection = styled.section`
-  margin-top: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
