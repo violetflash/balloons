@@ -3,7 +3,7 @@ import Button from '../../Elements/Button/Button';
 import styled from 'styled-components';
 import OrderItem from "../CartItem/CartItem";
 import Footer from "../../Elements/Footer/Footer";
-import { getTotalQuantity, getTotalCartSum, rubCurrencyPrice } from "../../utils/utils";
+import { getTotalQuantity, getTotalCartSum, rubCurrencyFormat } from "../../utils/utils";
 import { Wrapper, Content, MainFooter, MainTitle } from "../../Elements/PageElements/PageElements";
 
 
@@ -103,7 +103,7 @@ const Cart = (
                 <Total>
                     <span>Итого:</span>
                     <TotalQuantity>{getTotalQuantity(orders)}</TotalQuantity>
-                    <TotalSum>{rubCurrencyPrice(getTotalCartSum(orders))}</TotalSum>
+                    <TotalSum>{rubCurrencyFormat(getTotalCartSum(orders))}</TotalSum>
                 </Total>
                 <CheckoutFooter>
                     {orders.length > 0 && <Button text="Оформить Заказ"/>}

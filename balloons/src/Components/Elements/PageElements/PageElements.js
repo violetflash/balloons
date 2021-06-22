@@ -29,9 +29,20 @@ const MainTitle = styled.h1`
   font-size: 26px;
 `;
 
+const Main = styled.main`
+  background-color: #FFFBEC;
+  padding: 0 15px 20px;
+  text-align:center;
+
+  h3 {
+    padding-bottom: 5px;
+  }
+`;
+
 export {
     Wrapper,
     Content,
     MainFooter,
-    MainTitle
+    MainTitle,
+    Main
 }

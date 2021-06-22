@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Delete from '../../../images/delete.png';
-import { capitalizer, calcProductTotal, rubCurrencyPrice } from "../../utils/utils";
+import { capitalizer, calcProductTotal, rubCurrencyFormat } from "../../utils/utils";
 
 const DeleteBtn = styled.button`
   position: relative;
@@ -156,8 +156,8 @@ const CartItem = ({ order, index }) => {
                 <VendorCode>(арт. {'000' + order.id})</VendorCode>
             </ItemInfo>
             <Quantity>{order.count}</Quantity>
-            <Price>{rubCurrencyPrice(order.price)}</Price>
-            <Total>{rubCurrencyPrice(calcProductTotal(order))}</Total>
+            <Price>{rubCurrencyFormat(order.price)}</Price>
+            <Total>{rubCurrencyFormat(calcProductTotal(order))}</Total>
             <DeleteBtn/>
         </Item>
 

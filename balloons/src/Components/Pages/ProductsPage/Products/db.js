@@ -2,8 +2,7 @@ const defaultDescription = `Фольгированный воздушный ша
             может использоваться в качестве самостоятельного подарка или в составе фонтана из шаров. Имеет встроенный 
             клапан, который позволяет гелию оставаться внутри шара длительное время (до 3-4 недель).`;
 
-const additions = ['Гелий', 'Пакетик', 'Бантик', 'Подарочная упаковка', 'Фатин', 'Индивидуальная упаковка с полиграфией',
-    'Конфетти', 'Лента'];
+const additions = ['Гелий', 'Лента', 'Бантик', 'Пакетик'];
 
 const db = {
 
@@ -18,7 +17,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '17"/43 см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Лесные друзья',
@@ -33,7 +33,8 @@ const db = {
             Живые эмоции зверей, красочные иллюстрации и дополненная тематика - черты любимых карточек. Подарите 
             счастье и красивый воздушный шар как ребенку так и взрослому. Каждый найдет для себя что-то интересное 
             и новое. Отлично сочетается с латексными и оформительскими фольгированными шарами.
-            Имеет надежный обратный клапан, который сохраняет гелий или воздух внутри шара длительное время.`
+            Имеет надежный обратный клапан, который сохраняет гелий или воздух внутри шара длительное время.`,
+                additional: additions
             },
             {
                 name: 'Волшебный лес',
@@ -47,7 +48,8 @@ const db = {
                 description: `Волшебный сказочный лес со зверятами Вудленд изображен на воздушном шаре. Woodlend - это 
             удивительные милые животные и красочные иллюстрации. Используйте как самостоятельный подарок или в составе 
             фонтана из шаров. Будет отлично сочетаться с фигурами: Лиса, Енот, Олененок, Зайчик и Ежик
-            Шар имеет надежный обратный клапан, который сохраняет гелий или воздух внутри шара длительное время.`
+            Шар имеет надежный обратный клапан, который сохраняет гелий или воздух внутри шара длительное время.`,
+                additional: additions
             },
             {
                 name: 'Цум Цум',
@@ -58,7 +60,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Испания',
                 size: '18"/46см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Холодное сердце Голография',
@@ -71,7 +74,8 @@ const db = {
                 size: '18"/46см',
                 description: `Сестры Эльза и Анна из мультфильма "Холодное Сердце" - всегда желанные гостьи на празднике каждой принцессы!
             Объем гелия в воздушном шаре 0,014 куб. м.
-            Шар имеет встроенный клапан, который позволяет гелию оставаться внутри шара длительное время (до 3-4 недель).`
+            Шар имеет встроенный клапан, который позволяет гелию оставаться внутри шара длительное время (до 3-4 недель).`,
+                additional: additions
             },
             {
                 name: 'Тигренок',
@@ -82,7 +86,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Леди Баг',
@@ -95,7 +100,8 @@ const db = {
                 size: '18"/46см',
                 description: `Фольгированный воздушный шар - прекрасно подходит для оформления детских праздников, а также 
             может использоваться в качестве самостоятельного подарка или в составе фонтана из шаров. Имеет встроенный 
-            клапан, который позволяет гелию оставаться внутри шара длительное время (до 3-4 недель).`
+            клапан, который позволяет гелию оставаться внутри шара длительное время (до 3-4 недель).`,
+                additional: additions
             },
             {
                 name: 'Комплимент для мамы',
@@ -106,7 +112,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Испания',
                 size: '18"/46см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Комплимент для папы',
@@ -117,7 +124,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Любимой мамочке!',
@@ -128,7 +136,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Испания',
                 size: '18"/46см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Любимой мамочке. Цветы',
@@ -139,7 +148,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Испания',
                 size: '18"/46см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Смелый и сильный',
@@ -150,7 +160,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Испания',
                 size: '18"/46см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Покоряй вершины',
@@ -161,7 +172,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Живи Ярко!',
@@ -172,7 +184,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Испания',
                 size: '18"/46см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Смайл',
@@ -183,7 +196,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Испания',
                 size: '18"/46см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Краски жизни',
@@ -194,7 +208,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Ловец снов в упаковке',
@@ -205,7 +220,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Летние цветы в упаковке',
@@ -216,7 +232,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Ты наша гордость',
@@ -227,7 +244,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Счастья, добра, тепла',
@@ -238,7 +256,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Будь счастлива!',
@@ -249,7 +268,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Пусть сбудутся все мечты',
@@ -260,7 +280,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Лучшие друзья',
@@ -271,7 +292,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Испания',
                 size: '18"/46см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Всего Cвежего',
@@ -282,7 +304,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Испания',
                 size: '18"/46см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Сердце',
@@ -293,7 +316,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Испания',
                 size: '18"/46см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Ты самый лучший',
@@ -304,7 +328,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Детка, ты просто космос',
@@ -315,7 +340,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Счастье это ты!',
@@ -326,7 +352,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Испания',
                 size: '18"/46см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Сияй',
@@ -337,7 +364,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Испания',
                 size: '18"/46см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Ты просто огонь',
@@ -348,7 +376,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
             {
                 name: 'Синий мрамор',
@@ -359,7 +388,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '19"/48см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
         ],
         digits: [
@@ -372,7 +402,8 @@ const db = {
                 subType: 'фольгированный',
                 country: 'Россия',
                 size: '17"/43 см',
-                description: defaultDescription
+                description: defaultDescription,
+                additional: additions
             },
         ],
     },

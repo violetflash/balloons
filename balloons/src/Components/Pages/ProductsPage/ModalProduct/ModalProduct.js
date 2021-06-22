@@ -3,7 +3,8 @@ import Button from '../../../Elements/Button/Button';
 import styled from 'styled-components';
 import CountProduct from "../CountProduct/CountProduct";
 import ProductCountState from "../../../Hooks/ProuctCountState/ProuctCountState";
-import {rubCurrencyPrice, calcProductTotal} from "../../../utils/utils";
+import {rubCurrencyFormat, calcProductTotal} from "../../../utils/utils";
+import Additions from "../Additions/Additions";
 
 const Overlay = styled.div`
   position: fixed;
@@ -169,7 +170,7 @@ const ModalContent = styled.div`
   flex-direction: column;
   //max-height: 400px;
   //overflow-y: scroll;
-  margin-right: 15px;
+  padding-right: 15px;
   border-bottom: 1px solid #CCCCCC;
 `;
 
@@ -203,6 +204,7 @@ const Amount = styled.div`
   align-items: center;
   //justify-content: space-evenly;
   padding-top: 10px;
+  border-top: 1px solid #CCCCCC;
   margin: 0;
   margin-bottom: 20px;
 
@@ -274,14 +276,16 @@ const ModalProduct = (
                             <InfoLine>Артикул: <span>{'000' + openItem.id}</span></InfoLine>
                             <InfoLine>Размер: <span>{openItem.size}</span></InfoLine>
                             <InfoLine>Страна: <span>{openItem.country}</span></InfoLine>
-                            <InfoLine>Цена:<span>{rubCurrencyPrice(openItem.price)}</span>
+                            <InfoLine>Цена:<span>{rubCurrencyFormat(openItem.price)}</span>
                             </InfoLine>
                         </InfoLines>
                     </ModalContent>
+                    <Additions />
+
                     <Amount>
                         <CountProduct {...counter}/>
                         {counter.count > 1 && <TotalSum>
-                            <span> Сумма: <Sum>{rubCurrencyPrice(calcProductTotal(newOrder))}</Sum> </span>
+                            <span> Сумма: <Sum>{rubCurrencyFormat(calcProductTotal(newOrder))}</Sum> </span>
                         </TotalSum>}
                     </Amount>
                     <Footer>

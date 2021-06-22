@@ -4,7 +4,7 @@ import baloons from '../../images/baloons2.png';
 import Logo from '../Elements/Logo/Logo';
 import cart from '../../images/cart.png';
 
-import { rubCurrencyPrice, getTotalCartSum } from "../utils/utils";
+import { rubCurrencyFormat, getTotalCartSum } from "../utils/utils";
 
 const Header = styled.header`
   position: fixed;
@@ -361,7 +361,7 @@ const Navbar = (
                         </CartIconBox>
                         <CartInfo>
                             Итого:
-                            <CartTotal>{orders ? rubCurrencyPrice(getTotalCartSum(orders)) : rubCurrencyPrice(0) }</CartTotal>
+                            <CartTotal>{orders ? rubCurrencyFormat(getTotalCartSum(orders)) : rubCurrencyFormat(0) }</CartTotal>
                         </CartInfo>
                     </Cart>
                     <Login>
