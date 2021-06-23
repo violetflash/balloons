@@ -235,19 +235,28 @@ const ModalProduct = (
 
     const addToOrder = () => {
 
+        const checkItemAlreadyInCart = () => {
+            let idx = -1;
 
+            orders.forEach((order, index) => {
+                const {count: orderCount, ...restOrder} = order;
+                const {count: newOrderCount, ...restNewOrder} = newOrder;
 
+                if (JSON.stringify(restOrder) === JSON.stringify(restNewOrder)) {
+                    idx = index;
+                }
+            });
 
-        const checkItemAlreadyInCart = orders.findIndex((order) => {
-            return order.id === newOrder.id;
-        });
+            console.log(idx);
+            return idx;
+        }
 
         const checkAdds = () => {
-            return JSON.stringify(orders[checkItemAlreadyInCart].adds) === JSON.stringify(newOrder.adds);
+            return JSON.stringify(orders[checkItemAlreadyInCart()].adds) === JSON.stringify(newOrder.adds);
         };
 
-        if (checkItemAlreadyInCart >= 0 && checkAdds()) {
-            orders[checkItemAlreadyInCart].count += newOrder.count;
+        if (checkItemAlreadyInCart() >=0 && checkAdds()) {
+            orders[checkItemAlreadyInCart()].count += newOrder.count;
             setOpenItem(null);
             setAddToCartPopup(openItem);
             setTimeout(setAddToCartPopup, 1500, null);

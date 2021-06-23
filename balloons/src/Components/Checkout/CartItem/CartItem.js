@@ -191,9 +191,7 @@ const CartItem = ({ order, index }) => {
     const adds = order.adds ? order.adds.filter(item => item.checked) : null;
     const addsCount = adds.length;
     const addPrice = Math.ceil(order.price * 0.1);
-    const totalAddsSum = addPrice * addsCount;
-
-    console.log(addsCount);
+    const totalAddsSum = addPrice * addsCount * order.count;
 
     return (
         <Item data-index={index + ')'}>

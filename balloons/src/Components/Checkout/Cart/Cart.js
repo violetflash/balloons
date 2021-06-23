@@ -19,7 +19,9 @@ const OrderList = styled.ul`
 const Total = styled.div`
   display: flex;
   //padding: 0 40px;
-  background-color: rgba(79, 42, 109, 0.3);
+  //background-color: rgba(79, 42, 109, 0.3);
+  background-color: rgba(241,207,166,0.4);
+  box-shadow: inset 0 15px 30px cornsilk, 0 2px 9px rgb(0 0 0 / 22%);
   padding: 20px 40px;
   //max-width: 100%;
   max-width: 1200px;
@@ -90,7 +92,7 @@ const Cart = (
                 <MainTitle>Ваш Заказ</MainTitle>
                 {orders.length ?
                     <OrderList>
-                        {orders.map((item, index) => <OrderItem key={item.id} order={item} index={index + 1}/>)}
+                        {orders.map((item, index) => <OrderItem key={item.id + '' + index} order={item} index={index + 1}/>)}
                     </OrderList> :
                     <EmptyList>Вы пока ничего не добавили в корзину...</EmptyList>
                 }

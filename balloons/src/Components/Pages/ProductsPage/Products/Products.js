@@ -22,20 +22,34 @@ const Menu = styled.div`
 `;
 
 const Button = styled.button`
+  position: relative;
   border: none;
   margin: 0 20px;
   font-size: 18px;
   font-weight: 700;
+  color: #100;
   background-color: transparent;
   cursor: pointer;
   padding-bottom: 10px;
   border-bottom: 4px solid transparent;
-  transition: all 0.3s ease 0s;
+  transition: all 0.3s;
 
   //color: rgba(79,42,109,1);
-  
+
   &.active {
-    border-bottom: 4px solid palevioletred;
+
+    &::before {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 4px;
+      border-radius: 4px;
+      background-color: palevioletred;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+
   }
 `;
 

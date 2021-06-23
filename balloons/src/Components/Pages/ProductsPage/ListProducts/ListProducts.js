@@ -122,7 +122,7 @@ const CardInfo = styled.aside`
   //background-color: #f5d7ae;
   background-color: rgba(241, 207, 166, 0.4);
   //background-color: #fae3d9;
-  box-shadow: inset 0 19px 38px rgba(255, 94, 94, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+  //box-shadow: inset 0 19px 38px rgba(255, 94, 94, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
   //border-bottom: 1px solid #CCCCCC;
 
 
@@ -143,16 +143,35 @@ const Price = styled.p`
 const InCart = styled.span`
   position: absolute;
   right: 10px;
+  
+  span {
+    font-weight: 700;
+  }
 `;
 
 
 
 const ListProducts = ({ itemList, setOpenItem, orders }) => {
 
-    const checkItemInCart = (item) => {
-        return orders.findIndex(order => {
-            return order.id === item.id;
-        })
+    const getAllEntriesIndexes = (item) => {
+        const indexes = [];
+        orders.forEach((elem, index) => {
+            if (elem.id === item.id) {
+                indexes.push(index);
+            }
+        });
+
+        return indexes;
+    };
+
+    const countSameEntries = (item) => {
+        const indexes = getAllEntriesIndexes(item);
+        const entries = [];
+        indexes.forEach((idx) => {
+            entries.push(orders[idx]);
+        });
+
+        return entries.reduce((counter, current) => counter + current.count, 0);
     };
 
     return (
@@ -170,7 +189,7 @@ const ListProducts = ({ itemList, setOpenItem, orders }) => {
                             style: 'currency',
                             currency: 'RUB'
                         })}
-                            {checkItemInCart(item) >= 0 && <InCart>В корзине: {orders[checkItemInCart(item)].count} шт.</InCart>}
+                            {getAllEntriesIndexes(item).length > 0 && <InCart>В корзине: <span>{countSameEntries(item)}</span> шт.</InCart>}
                         </Price>
                     </CardInfo>
                     <Item img={item.img} country={item.country}/>
