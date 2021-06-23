@@ -247,7 +247,6 @@ const ModalProduct = (
                 }
             });
 
-            console.log(idx);
             return idx;
         }
 
