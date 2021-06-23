@@ -151,7 +151,7 @@ const Close = styled.button`
 `;
 
 const Description = styled.p`
-  padding: 5px 0;
+  padding: 5px 10px 0 0;
   font-size: 14px;
   margin-bottom: 10px;
   text-indent: 1.5rem;

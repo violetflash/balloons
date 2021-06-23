@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import Delete from '../../../images/delete.png';
-import { capitalizer, calcProductTotal, rubCurrencyFormat } from "../../utils/utils";
+import { capitalizer, rubCurrencyFormat, calcRawProductTotal } from "../../utils/utils";
 
 const DeleteBtn = styled.button`
-  position: relative;
+  position: absolute;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  right: 0;
 
   width: 40px;
   height: 30px;
@@ -44,9 +45,12 @@ const DeleteBtn = styled.button`
 const Item = styled.li`
   position: relative;
   display: flex;
+  //flex-direction: column;
   align-items: center;
+  //justify-content: center;
+  flex-wrap: wrap;
   width: 100%;
-  padding: 10px 0 10px 20px;
+  padding: 10px 50px 10px 20px;
   border-bottom: 1px solid #ccc;
   
   &::before {
@@ -55,6 +59,31 @@ const Item = styled.li`
     left: 0;
   }
 `;
+
+const ItemContent = styled.div`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const ItemTop = styled.div`
+  display: flex;
+  align-items: center;
+  //margin-left: 20px;
+
+`;
+
+const ItemBottom = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 10px 0 0 10px;
+  font-size: 14px;
+  padding-bottom: 5px;
+`;
+
+
+
 
 const ItemInfo = styled.div`
   display: flex;
@@ -69,14 +98,13 @@ const Image = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  margin-left: 10px;
   background-image: ${({img}) => `url(${img})`};
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   width: 40px;
   height: 40px;
-  margin-left: 30px;
   cursor: zoom-in;
   
   &::before {
@@ -133,6 +161,7 @@ const Price = styled.span`
 
 const VendorCode = styled.span`
   margin-left: 5px;
+  font-size: 12px;
 `;
 
 const Total = styled.span`
@@ -143,38 +172,54 @@ const Total = styled.span`
 `;
 
 const Adds = styled.span`
+  //width: 100%;
+  margin-left: 5px;
   
+  transform: skew(-5deg, 0deg);
   
   span {
     position:relative;
     margin-left: 5px;
     background-color: #e5e5e5;
     padding: 5px;
-    padding-left: 15px;
-    &::before {
-      position: absolute;
-      content: '+';
-      left: 5px;
-    }
+   
   }
 `;
 
 
 const CartItem = ({ order, index }) => {
     const adds = order.adds ? order.adds.filter(item => item.checked) : null;
+    const addsCount = adds.length;
+    const addPrice = Math.ceil(order.price * 0.1);
+    const totalAddsSum = addPrice * addsCount;
+
+    console.log(addsCount);
+
     return (
         <Item data-index={index + ')'}>
-            <ItemInfo>
-                <Image src={order.img} img={order.img}/>
-                {order.type && <Type>{capitalizer(order.type)}</Type>}
-                {order.subType && <SubType>{order.subType}:</SubType>}
-                <Name>"{order.name}"</Name>
-                <VendorCode>(арт. {'000' + order.id})</VendorCode>
-                {order.adds && <Adds>{adds.map((item, index) => <span key={index}>{item.name}</span>)}</Adds>}
-            </ItemInfo>
-            <Quantity>{order.count}</Quantity>
-            <Price>{rubCurrencyFormat(order.price)}</Price>
-            <Total>{rubCurrencyFormat(calcProductTotal(order))}</Total>
+            <Image src={order.img} img={order.img}/>
+            <ItemContent>
+                <ItemTop>
+                    <ItemInfo>
+                        {order.type && <Type>{capitalizer(order.type)}</Type>}
+                        {order.subType && <SubType>{order.subType}:</SubType>}
+                        <Name>"{order.name}"</Name>
+                        <VendorCode>(арт. {'000' + order.id})</VendorCode>
+                    </ItemInfo>
+                    <Quantity>{order.count}</Quantity>
+                    <Price>{rubCurrencyFormat(order.price)}</Price>
+                    <Total>{rubCurrencyFormat(calcRawProductTotal(order))}</Total>
+                </ItemTop>
+                {addsCount > 0 && <ItemBottom >
+                    <ItemInfo>
+                        <Adds>{adds.map((item, index) => <span key={index}>{item.name}</span>)}</Adds>
+                    </ItemInfo>
+                    {/*<Quantity>{addsCount}</Quantity>*/}
+                    <Price>{rubCurrencyFormat(addPrice)}</Price>
+                    <Total>{rubCurrencyFormat(totalAddsSum)}</Total>
+                </ItemBottom>}
+            </ItemContent>
+
             <DeleteBtn/>
         </Item>
 

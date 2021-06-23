@@ -11,12 +11,16 @@ const calcProductTotal = order => {
 
     if (order.adds) {
         const countAdds = order.adds.filter(item => item.checked).length;
-        const price = Math.round(order.price * 0.1);
+        const price = Math.ceil(order.price * 0.1);
         const TotalAddsSum = price * countAdds;
 
         return (order.price + TotalAddsSum) * order.count ;
     }
 
+    return order.price * order.count;
+}
+
+const calcRawProductTotal = order => {
     return order.price * order.count;
 }
 
@@ -33,6 +37,7 @@ export {
     rubCurrencyFormat,
     calcProductTotal,
     getTotalQuantity,
-    getTotalCartSum
+    getTotalCartSum,
+    calcRawProductTotal
 };
 

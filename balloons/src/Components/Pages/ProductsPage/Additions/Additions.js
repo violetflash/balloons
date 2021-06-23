@@ -77,7 +77,7 @@ const Title = styled.span`
 
 
 const Additions = ({ additional, id, additionalItems, checkAdditions, price }) => {
-    const cost = Math.round(price * 0.1);
+    const cost = Math.ceil(price * 0.1);
     return (
         <>
             <Title>Дополнительно (+{rubCurrencyFormat(cost)}):</Title>
