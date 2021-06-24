@@ -16,7 +16,7 @@ const Select = styled.select`
   margin-left: 10px;
 `;
 
-const Choices = ({ id, choices, choice, changeChoice }) => {
+const Choices = ({ id, choices, changeChoice }) => {
     return (
         <SelectWrapper>
             Выберите опцию:
@@ -24,7 +24,6 @@ const Choices = ({ id, choices, choice, changeChoice }) => {
                 {choices.map((elem, index) => <option key={id + '' + index} data-price={elem.price}>{elem.option}</option>)}
             </Select>
         </SelectWrapper>
-
     );
 
 };

@@ -34,7 +34,7 @@ const App = () => {
             {indexState.activeIndex === 2 && <Shipping />}
             {indexState.activeIndex === 3 && <Contacts />}
             {openItemState.openItem && <ModalProduct {...openItemState} {...orders} {...orderItemsCounter} {...orderPopup}/>}
-            {indexState.activeIndex === 4 && <Cart  {...orders} {...indexState}/>}
+            {indexState.activeIndex === 4 && <Cart  {...orders} {...indexState} {...orderItemsCounter}/>}
             {orderPopup.addToCartPopup && <AddToCartPopupElem  {...orderPopup}/>}
         </React.Fragment>
     );

@@ -200,11 +200,22 @@ const Choice = styled.span`
 `;
 
 
-const CartItem = ({ order, index }) => {
+const CartItem = (
+    {
+        order, index, orders, setOrders,
+        setOrderItemsCounter, orderItemsCounter,
+    }) => {
     const adds = order.adds ? order.adds.filter(item => item.checked) : null;
     const addsCount = order.adds ? adds.length : null;
     const addPrice = Math.ceil(order.price * 0.1);
     const totalAddsSum = addPrice * addsCount * order.count;
+
+    const deleteHandler = () => {
+        const idx = orders.findIndex(elem => JSON.stringify(order) === JSON.stringify(elem));
+        orders.splice(idx, 1);
+        setOrders([...orders]);
+        setOrderItemsCounter(orderItemsCounter - 1 > 0 ? orderItemsCounter - 1 : null);
+    };
 
     return (
         <Item data-index={index + ')'}>
@@ -232,7 +243,7 @@ const CartItem = ({ order, index }) => {
                 </ItemBottom>}
             </ItemContent>
 
-            <DeleteBtn/>
+            <DeleteBtn onClick={deleteHandler}/>
         </Item>
 
     );

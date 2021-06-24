@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../../Elements/Button/Button';
 import styled from 'styled-components';
-import OrderItem from "../CartItem/CartItem";
+import CartItem from "../CartItem/CartItem";
 import Footer from "../../Elements/Footer/Footer";
 import { getTotalQuantity, getTotalCartSum, rubCurrencyFormat } from "../../utils/utils";
 import { Wrapper, Content, MainFooter, MainTitle } from "../../Elements/PageElements/PageElements";
@@ -82,9 +82,13 @@ const EmptyList = styled.div`
 
 const Cart = (
     {
-        orders,
+        orders, setOrders,
+        setOrderItemsCounter, orderItemsCounter,
     }) => {
 
+    const checkoutHandler = () => {
+        console.log(orders);
+    };
 
     return (
         <Wrapper id="checkout">
@@ -92,7 +96,17 @@ const Cart = (
                 <MainTitle>Ваш Заказ</MainTitle>
                 {orders.length ?
                     <OrderList>
-                        {orders.map((item, index) => <OrderItem key={item.id + '' + index} order={item} index={index + 1}/>)}
+                        {orders.map((item, index) => (
+                            <CartItem
+                                key={item.id + '' + index}
+                                order={item}
+                                index={index + 1}
+                                orders={orders}
+                                setOrders={setOrders}
+                                orderItemsCounter={orderItemsCounter}
+                                setOrderItemsCounter={setOrderItemsCounter}
+                            />
+                        ))}
                     </OrderList> :
                     <EmptyList>Вы пока ничего не добавили в корзину...</EmptyList>
                 }
@@ -102,7 +116,7 @@ const Cart = (
                     <TotalSum>{rubCurrencyFormat(getTotalCartSum(orders))}</TotalSum>
                 </Total>
                 <CheckoutFooter>
-                    {orders.length > 0 && <Button text="Оформить Заказ"/>}
+                    {orders.length > 0 && <Button text="Оформить Заказ" onClick={checkoutHandler}/>}
                 </CheckoutFooter>
             </Content>
 
