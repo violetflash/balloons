@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import rusFlag from '../../../../images/rus.png';
 import spainFlag from '../../../../images/spain.png';
+import { rubCurrencyFormat } from "../../../utils/utils";
 
 
 const countries = {
@@ -185,10 +186,7 @@ const ListProducts = ({ itemList, setOpenItem, orders }) => {
 
                     <CardInfo>
                         <Name>{item.name}</Name>
-                        <Price>{item.price.toLocaleString('ru-RU', {
-                            style: 'currency',
-                            currency: 'RUB'
-                        })}
+                        <Price>{rubCurrencyFormat(item.price)}
                             {getAllEntriesIndexes(item).length > 0 && <InCart>В корзине: <span>{countSameEntries(item)}</span> шт.</InCart>}
                         </Price>
                     </CardInfo>

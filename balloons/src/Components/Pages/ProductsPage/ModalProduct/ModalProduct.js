@@ -6,6 +6,8 @@ import ProductCountState from "../../../Hooks/ProuctCountState/ProuctCountState"
 import {rubCurrencyFormat, calcProductTotal} from "../../../utils/utils";
 import Additions from "../Additions/Additions";
 import AdditionalsState from "../../../Hooks/AdditionalsState/AdditionalsState";
+import ChoicesOptionsState from "../../../Hooks/ChoicesOptionsState/ChoicesOptionsState";
+import Choices from "../Choices/Choices";
 
 const Overlay = styled.div`
   position: fixed;
@@ -97,7 +99,7 @@ const InfoLine = styled.p`
 
   span {
     font-weight: 400;
-    margin-left: 15px;
+    margin-left: 5px;
   }
 `;
 
@@ -220,6 +222,11 @@ const ModalProduct = (
 
     const counter = ProductCountState();
     const additionsState = AdditionalsState(openItem);
+    const choicesState = ChoicesOptionsState(openItem);
+
+
+    openItem.price = openItem.choices ? +choicesState.choice.price : openItem.price;
+
 
     const closeModal = e => {
         if (e.target.id === 'overlay' || e.target.id === 'closeBtn') {
@@ -230,7 +237,8 @@ const ModalProduct = (
     const newOrder = {
         ...openItem,
         count: counter.count,
-        adds: additionsState.additionalItems
+        adds: additionsState.additionalItems,
+        choice: choicesState.choice
     };
 
     const addToOrder = () => {
@@ -289,12 +297,18 @@ const ModalProduct = (
                             <InfoLine>Артикул: <span>{'000' + openItem.id}</span></InfoLine>
                             <InfoLine>Размер: <span>{openItem.size}</span></InfoLine>
                             <InfoLine>Страна: <span>{openItem.country}</span></InfoLine>
-                            <InfoLine>Цена:<span>{rubCurrencyFormat(openItem.price)}</span>
+                            <InfoLine>Цена:
+                                <span>{rubCurrencyFormat(openItem.price)}</span>
+                                {/*<span>*/}
+                                {/*    {openItem.choices ? rubCurrencyFormat(choicesState.choice.price) :*/}
+                                {/*        rubCurrencyFormat(openItem.price)}*/}
+                                {/*</span>*/}
                             </InfoLine>
                         </InfoLines>
+                        {openItem.choices && <Choices {...choicesState} id={openItem.id} choices={openItem.choices}/>}
+
                     </ModalContent>
                     {openItem.additional && <Additions price={openItem.price} id={openItem.id} {...additionsState}/>}
-
                     <Amount>
                         <CountProduct {...counter}/>
                         {<TotalSum>

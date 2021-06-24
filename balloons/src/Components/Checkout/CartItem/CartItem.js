@@ -180,16 +180,29 @@ const Adds = styled.span`
   span {
     position:relative;
     margin-left: 5px;
-    background-color: #e5e5e5;
+    //background-color: #e5e5e5;
+    background-color: #f9ebd1;
+
     padding: 5px;
    
   }
 `;
 
+const Choice = styled.span`
+  background-color: #f9ebd1;
+  //background-color: #e5e5e5;
+
+  padding: 5px;
+  margin-left: 5px;
+  font-size: 14px;
+  transform: skew(-5deg);
+  //text-decoration:underline;
+`;
+
 
 const CartItem = ({ order, index }) => {
     const adds = order.adds ? order.adds.filter(item => item.checked) : null;
-    const addsCount = adds.length;
+    const addsCount = order.adds ? adds.length : null;
     const addPrice = Math.ceil(order.price * 0.1);
     const totalAddsSum = addPrice * addsCount * order.count;
 
@@ -202,6 +215,7 @@ const CartItem = ({ order, index }) => {
                         {order.type && <Type>{capitalizer(order.type)}</Type>}
                         {order.subType && <SubType>{order.subType}:</SubType>}
                         <Name>"{order.name}"</Name>
+                        {order.choice.option && <Choice>- {order.choice.option}.</Choice> }
                         <VendorCode>(арт. {'000' + order.id})</VendorCode>
                     </ItemInfo>
                     <Quantity>{order.count}</Quantity>
