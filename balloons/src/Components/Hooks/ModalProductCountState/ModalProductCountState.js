@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const ProductCountState = (openItem) => {
+const ModalProductCountState = (openItem) => {
     const getCount = openItem.count ? openItem.count : 1;
     const [count, setCount] = useState(getCount);
 
@@ -13,4 +13,4 @@ const ProductCountState = (openItem) => {
 
 };
 
-export default ProductCountState;
+export default ModalProductCountState;

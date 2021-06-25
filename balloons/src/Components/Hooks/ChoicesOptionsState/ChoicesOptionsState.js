@@ -1,7 +1,11 @@
 import { useState } from 'react';
 
 const ChoicesOptionsState = (openItem) => {
-    const [choice, setChoice] = useState(openItem.choices ? openItem.choices[0] : []);
+    const setDefaultState = openItem.choice ? openItem.choice :
+        openItem.choices ? openItem.choices[0] :
+            [];
+
+    const [choice, setChoice] = useState(setDefaultState);
 
     const changeChoice = e => {
         setChoice({

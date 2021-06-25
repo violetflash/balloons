@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '../../../Elements/Button/Button';
 import styled from 'styled-components';
 import CountProduct from "../CountProduct/CountProduct";
-import ProductCountState from "../../../Hooks/ProuctCountState/ProuctCountState";
+import ModalProductCountState from "../../../Hooks/ModalProductCountState/ModalProductCountState";
 import {rubCurrencyFormat, calcProductTotal} from "../../../utils/utils";
 import Additions from "../Additions/Additions";
 import AdditionalsState from "../../../Hooks/AdditionalsState/AdditionalsState";
@@ -220,7 +220,7 @@ const ModalProduct = (
         addToCartPopup, setAddToCartPopup,
     }) => {
 
-    const counter = ProductCountState(openItem);
+    const counter = ModalProductCountState(openItem);
     const additionsState = AdditionalsState(openItem);
     const choicesState = ChoicesOptionsState(openItem);
     const isEdit = openItem.index > -1;
@@ -307,14 +307,9 @@ const ModalProduct = (
                             <InfoLine>Страна: <span>{openItem.country}</span></InfoLine>
                             <InfoLine>Цена:
                                 <span>{rubCurrencyFormat(openItem.price)}</span>
-                                {/*<span>*/}
-                                {/*    {openItem.choices ? rubCurrencyFormat(choicesState.choice.price) :*/}
-                                {/*        rubCurrencyFormat(openItem.price)}*/}
-                                {/*</span>*/}
                             </InfoLine>
                         </InfoLines>
                         {openItem.choices && <Choices {...choicesState} id={openItem.id} choices={openItem.choices}/>}
-
                     </ModalContent>
                     {openItem.additional && <Additions price={openItem.price} id={openItem.id} {...additionsState}/>}
                     <Amount>

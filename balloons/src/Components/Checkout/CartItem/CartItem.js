@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import Delete from '../../../images/delete.png';
 import { capitalizer, rubCurrencyFormat, calcRawProductTotal } from "../../utils/utils";
@@ -52,7 +52,9 @@ const Item = styled.li`
   width: 100%;
   padding: 10px 50px 10px 20px;
   border-bottom: 1px solid #ccc;
-  
+  cursor: pointer;
+
+
   &::before {
     position: absolute;
     content: attr(data-index);
@@ -71,7 +73,6 @@ const ItemTop = styled.div`
   display: flex;
   align-items: center;
   //margin-left: 20px;
-  cursor: pointer;
 
 
 `;
@@ -213,6 +214,8 @@ const CartItem = (
     const addPrice = Math.ceil(order.price * 0.1);
     const totalAddsSum = addPrice * addsCount * order.count;
 
+    const refDeleteButton = useRef(null);
+
     const deleteHandler = (idx) => {
         // const idx = orders.findIndex(elem => JSON.stringify(order) === JSON.stringify(elem));
         //  or
@@ -223,10 +226,10 @@ const CartItem = (
     };
 
     return (
-        <Item data-index={counter + ')'} >
+        <Item data-index={counter + ')'} onClick={(e) => e.target !== refDeleteButton.current && setOpenItem({...order, index})}>
             <Image src={order.img} img={order.img}/>
             <ItemContent>
-                <ItemTop onClick={() => setOpenItem({...order, index})}>
+                <ItemTop >
                     <ItemInfo>
                         {order.type && <Type>{capitalizer(order.type)}</Type>}
                         {order.subType && <SubType>{order.subType}:</SubType>}
@@ -248,7 +251,7 @@ const CartItem = (
                 </ItemBottom>}
             </ItemContent>
 
-            <DeleteBtn onClick={() => deleteHandler(index)}/>
+            <DeleteBtn ref={refDeleteButton} onClick={() => deleteHandler(index)}/>
         </Item>
 
     );
