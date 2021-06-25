@@ -85,6 +85,7 @@ const Cart = (
         orders, setOrders,
         setOrderItemsCounter, orderItemsCounter,
         setOpenItem,
+        authentication, login, logout
     }) => {
 
     const checkoutHandler = () => {
@@ -119,7 +120,7 @@ const Cart = (
                     <TotalSum>{rubCurrencyFormat(getTotalCartSum(orders))}</TotalSum>
                 </Total>
                 <CheckoutFooter>
-                    {orders.length > 0 && <Button text="Оформить Заказ" onClick={checkoutHandler}/>}
+                    {orders.length > 0 && <Button text="Оформить Заказ" onClick={authentication ? checkoutHandler : login}/>}
                 </CheckoutFooter>
             </Content>
 
