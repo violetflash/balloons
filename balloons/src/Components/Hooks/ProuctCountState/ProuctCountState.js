@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-const ProductCountState = () => {
-    const [count, setCount] = useState(1);
+const ProductCountState = (openItem) => {
+    const getCount = openItem.count ? openItem.count : 1;
+    const [count, setCount] = useState(getCount);
 
     const onChange = e => {
         e.target.value = e.target.value.replace(/[^\d]/g, '').replace(/^0/, 1);

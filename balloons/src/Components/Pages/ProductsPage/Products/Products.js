@@ -82,17 +82,7 @@ const Products = ({ setOpenItem, orders }) => {
                         {switcherState.switcherIndex === 3 && <ListProducts itemList={db.foiled.walkers} setOpenItem={setOpenItem} orders={orders}/>}
                         {switcherState.switcherIndex === 4 && <ListProducts itemList={db.other} setOpenItem={setOpenItem} orders={orders}/>}
                     </Section>
-
-                    {/*<Section>*/}
-                    {/*    <h3>Другие товары</h3>*/}
-                    {/*    <ListProducts*/}
-                    {/*        itemList={db.other}*/}
-                    {/*        setOpenItem={setOpenItem}*/}
-                    {/*        orders={orders}*/}
-                    {/*    />*/}
-                    {/*</Section>*/}
                 </Main>
-
             </Content>
             <MainFooter>
                 <Footer />

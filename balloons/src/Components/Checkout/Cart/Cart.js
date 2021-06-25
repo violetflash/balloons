@@ -84,6 +84,7 @@ const Cart = (
     {
         orders, setOrders,
         setOrderItemsCounter, orderItemsCounter,
+        setOpenItem,
     }) => {
 
     const checkoutHandler = () => {
@@ -100,11 +101,13 @@ const Cart = (
                             <CartItem
                                 key={item.id + '' + index}
                                 order={item}
-                                index={index + 1}
+                                counter={index + 1}
+                                index={index}
                                 orders={orders}
                                 setOrders={setOrders}
                                 orderItemsCounter={orderItemsCounter}
                                 setOrderItemsCounter={setOrderItemsCounter}
+                                setOpenItem={setOpenItem}
                             />
                         ))}
                     </OrderList> :

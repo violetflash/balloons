@@ -71,6 +71,8 @@ const ItemTop = styled.div`
   display: flex;
   align-items: center;
   //margin-left: 20px;
+  cursor: pointer;
+
 
 `;
 
@@ -202,26 +204,29 @@ const Choice = styled.span`
 
 const CartItem = (
     {
-        order, index, orders, setOrders,
+        order, counter, orders, setOrders, index,
         setOrderItemsCounter, orderItemsCounter,
+        setOpenItem
     }) => {
     const adds = order.adds ? order.adds.filter(item => item.checked) : null;
     const addsCount = order.adds ? adds.length : null;
     const addPrice = Math.ceil(order.price * 0.1);
     const totalAddsSum = addPrice * addsCount * order.count;
 
-    const deleteHandler = () => {
-        const idx = orders.findIndex(elem => JSON.stringify(order) === JSON.stringify(elem));
+    const deleteHandler = (idx) => {
+        // const idx = orders.findIndex(elem => JSON.stringify(order) === JSON.stringify(elem));
+        //  or
+        // const newOrders = orders.filter((item, i) => i !== index);
         orders.splice(idx, 1);
         setOrders([...orders]);
         setOrderItemsCounter(orderItemsCounter - 1 > 0 ? orderItemsCounter - 1 : null);
     };
 
     return (
-        <Item data-index={index + ')'}>
+        <Item data-index={counter + ')'} >
             <Image src={order.img} img={order.img}/>
             <ItemContent>
-                <ItemTop>
+                <ItemTop onClick={() => setOpenItem({...order, index})}>
                     <ItemInfo>
                         {order.type && <Type>{capitalizer(order.type)}</Type>}
                         {order.subType && <SubType>{order.subType}:</SubType>}
@@ -243,7 +248,7 @@ const CartItem = (
                 </ItemBottom>}
             </ItemContent>
 
-            <DeleteBtn onClick={deleteHandler}/>
+            <DeleteBtn onClick={() => deleteHandler(index)}/>
         </Item>
 
     );

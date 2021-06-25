@@ -220,9 +220,10 @@ const ModalProduct = (
         addToCartPopup, setAddToCartPopup,
     }) => {
 
-    const counter = ProductCountState();
+    const counter = ProductCountState(openItem);
     const additionsState = AdditionalsState(openItem);
     const choicesState = ChoicesOptionsState(openItem);
+    const isEdit = openItem.index > -1;
 
 
     openItem.price = openItem.choices ? +choicesState.choice.price : openItem.price;
@@ -239,6 +240,13 @@ const ModalProduct = (
         count: counter.count,
         adds: additionsState.additionalItems,
         choice: choicesState.choice
+    };
+
+    const editOrder = () => {
+        const tempOrders = [...orders];
+        tempOrders[openItem.index] = newOrder;
+        setOrders(tempOrders);
+        setOpenItem(null);
     };
 
     const addToOrder = () => {
@@ -316,7 +324,7 @@ const ModalProduct = (
                         </TotalSum>}
                     </Amount>
                     <Footer>
-                        <Button text="Добавить в корзину" onClick={() => addToOrder()}/>
+                        <Button text={isEdit ? "Сохранить" : "Добавить в корзину"} onClick={isEdit ? editOrder : addToOrder}/>
                     </Footer>
                 </ModalInfo>
 
