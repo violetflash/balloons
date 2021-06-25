@@ -16,16 +16,16 @@ const Select = styled.select`
   margin-left: 10px;
 `;
 
-const Choices = ({ id, choices, changeChoice, choice }) => {
+const Choices = ({id, choices, changeChoice, choice}) => {
+
     return (
         <SelectWrapper>
             Выберите опцию:
-            <Select onChange={changeChoice}>
-                {choices.map((elem, index) => <option selected={choice === elem.option}
-                    key={id + '' + index}
-                    data-price={elem.price}>
-                    {elem.option}
-                </option>)}
+            <Select onChange={changeChoice} defaultValue={choice.option}>
+                {choices.map((elem, index) =>
+                    <option key={id + '' + index} data-price={elem.price}>
+                        {elem.option}
+                    </option>)}
             </Select>
         </SelectWrapper>
     );
