@@ -244,6 +244,18 @@ const ModalProduct = (
 
     const editOrder = () => {
         const tempOrders = [...orders];
+
+        //counts are different
+        // for (const order of tempOrders) {
+        //     if (JSON.stringify(order) === JSON.stringify(newOrder)) {
+        //         order.count += newOrder.count;
+        //         setOrders(tempOrders);
+        //         setOpenItem(null);
+        //         console.log('hit');
+        //         return;
+        //     }
+        // }
+
         tempOrders[openItem.index] = newOrder;
         setOrders(tempOrders);
         setOpenItem(null);
