@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from "firebase/app";
 import 'firebase/auth';
+import 'firebase/database';
 import useAuth from "./Components/Hooks/useAuth/useAuth";
 import NavBar from "./Components/NavBar/Navbar";
 import Products from "./Components/Pages/ProductsPage/Products/Products";
@@ -20,6 +21,7 @@ import Contacts from "./Components/Pages/Contacts/Contacts";
 const firebaseConfig = {
     apiKey: "AIzaSyARo7yq3MZQXVoHskgOi5FIPHr0BcFO0v4",
     authDomain: "balloons-aac5a.firebaseapp.com",
+    databaseURL: "https://balloons-aac5a-default-rtdb.europe-west1.firebasedatabase.app",
     projectId: "balloons-aac5a",
     storageBucket: "balloons-aac5a.appspot.com",
     messagingSenderId: "346056313266",
@@ -45,10 +47,12 @@ const App = () => {
                 {...orderItemsCounter}
                 {...indexState}
                 {...orders}
-                {...auth}/>
+                {...auth}
+            />
             {indexState.activeIndex === 0 && <Products
                 {...openItemState}
-                {...orders}/>}
+                {...orders}
+            />}
             {indexState.activeIndex === 1 && <About />}
             {indexState.activeIndex === 2 && <Shipping />}
             {indexState.activeIndex === 3 && <Contacts />}
@@ -56,15 +60,19 @@ const App = () => {
                 {...openItemState}
                 {...orders}
                 {...orderItemsCounter}
-                {...orderPopup}/>}
+                {...orderPopup}
+            />}
             {indexState.activeIndex === 4 && <Cart
                 {...orders}
                 {...indexState}
                 {...orderItemsCounter}
                 {...openItemState}
-                {...auth}/>}
+                {...auth}
+                firebaseDatabase={firebase.database}
+            />}
             {orderPopup.addToCartPopup && <AddToCartPopupElem
-                {...orderPopup}/>}
+                {...orderPopup}
+            />}
         </React.Fragment>
     );
 

@@ -3,7 +3,7 @@ import Button from '../../Elements/Button/Button';
 import styled from 'styled-components';
 import CartItem from "../CartItem/CartItem";
 import Footer from "../../Elements/Footer/Footer";
-import { getTotalQuantity, getTotalCartSum, rubCurrencyFormat } from "../../utils/utils";
+import { getTotalQuantity, getTotalCartSum, rubCurrencyFormat, projection } from "../../utils/utils";
 import { Wrapper, Content, MainFooter, MainTitle } from "../../Elements/PageElements/PageElements";
 
 
@@ -80,16 +80,34 @@ const EmptyList = styled.div`
 `;
 
 
+const dataRules = {
+    name: ['name'],
+    price: ['price'],
+    count: ['count'],
+    adds: ['adds', item => item.checked ? item : 'Без допов'],
+    choice: ['choice', item => item ? item : 'Без опций']
+}
+
 const Cart = (
     {
         orders, setOrders,
         setOrderItemsCounter, orderItemsCounter,
         setOpenItem,
-        authentication, login, logout
+        authentication, login, firebaseDatabase
     }) => {
 
+     const fdb = firebaseDatabase();
+
+    const sendOrder = () => {
+        console.log('orders', orders);
+        const newOrder = orders.map(projection(dataRules));
+        console.log('New orders', newOrder);
+
+        // fdb.ref('order').set(orders);
+    };
+
     const checkoutHandler = () => {
-        console.log(orders);
+        sendOrder();
     };
 
     return (

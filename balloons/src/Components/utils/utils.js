@@ -32,12 +32,23 @@ const getTotalCartSum = arr => {
     return arr.reduce((accum, curr) => accum + calcProductTotal(curr), 0);
 }
 
+const projection = dataRules => {
+    const keys = Object.keys(dataRules);
+    return obj => keys.reduce((newObject, key) => {
+        newObject[key] = dataRules[key].reduce((val, fn, i) => (i ? fn(val) : obj[fn]), null)
+        return newObject;
+    }, {});
+};
+
+
+
 export {
     capitalizer,
     rubCurrencyFormat,
     calcProductTotal,
     getTotalQuantity,
     getTotalCartSum,
-    calcRawProductTotal
+    calcRawProductTotal,
+    projection
 };
 
