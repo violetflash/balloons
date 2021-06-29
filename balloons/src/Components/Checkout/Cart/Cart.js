@@ -20,7 +20,7 @@ const Total = styled.div`
   display: flex;
   //padding: 0 40px;
   //background-color: rgba(79, 42, 109, 0.3);
-  background-color: rgba(241,207,166,0.4);
+  background-color: rgba(241, 207, 166, 0.4);
   box-shadow: inset 0 15px 30px cornsilk, 0 2px 9px rgb(0 0 0 / 22%);
   padding: 20px 40px;
   //max-width: 100%;
@@ -53,11 +53,11 @@ const CheckoutFooter = styled.footer`
 `;
 
 const TotalQuantity = styled.span`
-  position:relative;
+  position: relative;
   min-width: 45px;
   text-align: right;
   padding-right: 40px;
-  
+
   &::after {
     position: absolute;
     content: 'шт.';
@@ -75,18 +75,21 @@ const TotalSum = styled.span`
 
 const EmptyList = styled.div`
   padding: 15px 0;
-  text-align:center;
+  text-align: center;
   margin-bottom: 40px;
 `;
 
 
 const dataRules = {
     name: ['name'],
+    type: ['type', item => item ? item : ''],
+    subType: ['subType', item => item ? item : ''],
     price: ['price'],
     count: ['count'],
-    adds: ['adds', item => item.checked ? item : 'Без допов'],
-    choice: ['choice', item => item ? item : 'Без опций']
-}
+    adds: ['adds', arr => arr.filter(item => item.checked).map(obj => obj.name),
+        arr => arr.length ? arr : 'Без допов'],
+    choice: ['choice', item => item.option, item => item ? item : 'Без опций']
+};
 
 const Cart = (
     {
@@ -96,14 +99,19 @@ const Cart = (
         authentication, login, firebaseDatabase
     }) => {
 
-     const fdb = firebaseDatabase();
+    const fdb = firebaseDatabase();
 
     const sendOrder = () => {
         console.log('orders', orders);
         const newOrder = orders.map(projection(dataRules));
         console.log('New orders', newOrder);
 
-        // fdb.ref('order').set(orders);
+        fdb.ref('orders').push().set({
+            customerName: authentication.displayName,
+            email: authentication.email,
+            order: newOrder
+        });
+        setOrders([]);
     };
 
     const checkoutHandler = () => {
@@ -138,7 +146,8 @@ const Cart = (
                     <TotalSum>{rubCurrencyFormat(getTotalCartSum(orders))}</TotalSum>
                 </Total>
                 <CheckoutFooter>
-                    {orders.length > 0 && <Button text="Оформить Заказ" onClick={authentication ? checkoutHandler : login}/>}
+                    {orders.length > 0 &&
+                    <Button text="Оформить Заказ" onClick={authentication ? checkoutHandler : login}/>}
                 </CheckoutFooter>
             </Content>
 
