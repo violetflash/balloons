@@ -54,6 +54,8 @@ const App = () => {
             {indexState.activeIndex === 0 && <Products
                 {...openItemState}
                 {...orders}
+                firebaseDatabase={firebase.database}
+
             />}
             {indexState.activeIndex === 1 && <About />}
             {indexState.activeIndex === 2 && <Shipping />}
