@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 
-const TitleState = () => {
-    const [title, setTitle] = useState('Магазин упаковок для воздуха');
-
-    return { title, setTitle };
+const TitleState = openItem => {
+    useEffect(() => {
+        document.title = openItem ? openItem.name : 'Сплошное надувательство';
+    }, [openItem])
 };
 
 export default TitleState;

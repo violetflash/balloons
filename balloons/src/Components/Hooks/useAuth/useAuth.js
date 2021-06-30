@@ -22,7 +22,7 @@ const UseAuth = authFirebase => {
             }
         })
 
-    }, );
+    }, [auth, authentication]);
 
     return { authentication,  login, logout };
 };

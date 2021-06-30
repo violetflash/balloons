@@ -17,6 +17,7 @@ import NavActiveIndexState from "./Components/Hooks/NavActiveIndexState/NavActiv
 import About from "./Components/Pages/About/About";
 import Shipping from "./Components/Pages/Shipping/Shipping";
 import Contacts from "./Components/Pages/Contacts/Contacts";
+import TitleState from "./Components/Hooks/TitleState/TitleState";
 
 const firebaseConfig = {
     apiKey: "AIzaSyARo7yq3MZQXVoHskgOi5FIPHr0BcFO0v4",
@@ -39,6 +40,7 @@ const App = () => {
     const orderPopup = AddToCartPopupState();
     const indexState = NavActiveIndexState();
     const auth = useAuth(firebase.auth);
+    TitleState(openItemState.openItem);
 
     return (
         <React.Fragment>

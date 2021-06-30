@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import ListProducts from "../ListProducts/ListProducts";
-import db from './db';
+// import db from './db';
 import Banner from "../Banner/Banner";
 import { Wrapper, Content, MainFooter, Main } from "../../../Elements/PageElements/PageElements";
 import Footer from "../../../Elements/Footer/Footer";
 import ProductSwitchState from "../../../Hooks/ProductSwitchState/ProductSwitchState";
+import useFetch from "../../../Hooks/useFetch/useFetch";
 
 const Section = styled.section`
   padding: 15px 0 40px 0;
@@ -60,29 +61,41 @@ const Products = ({ setOpenItem, orders }) => {
         switcherState.setSwitcherIndex(index);
     };
 
+    const res = useFetch();
+
+    const db = res.response;
+
     return (
         <Wrapper>
             <Content>
                 <Banner/>
-                <Main>
-                    <Menu>
-                        {menu.map((link, index) => (
-                            <Button
-                                key={index}
-                                onClick={() => menuHandler(index)}
-                                className={switcherState.switcherIndex === index ? 'active' : null}>
-                                {link}
-                            </Button>
-                        ))}
-                    </Menu>
-                    <Section>
-                        {switcherState.switcherIndex === 0 && <ListProducts itemList={db.foiled.child} setOpenItem={setOpenItem} orders={orders}/>}
-                        {switcherState.switcherIndex === 1 && <ListProducts itemList={db.foiled.festivals} setOpenItem={setOpenItem} orders={orders}/>}
-                        {switcherState.switcherIndex === 2 && <ListProducts itemList={db.foiled.digits} setOpenItem={setOpenItem} orders={orders}/>}
-                        {switcherState.switcherIndex === 3 && <ListProducts itemList={db.foiled.walkers} setOpenItem={setOpenItem} orders={orders}/>}
-                        {switcherState.switcherIndex === 4 && <ListProducts itemList={db.other} setOpenItem={setOpenItem} orders={orders}/>}
-                    </Section>
-                </Main>
+                { db ?
+                    <Main>
+                        <Menu>
+                            {menu.map((link, index) => (
+                                <Button
+                                    key={index}
+                                    onClick={() => menuHandler(index)}
+                                    className={switcherState.switcherIndex === index ? 'active' : null}>
+                                    {link}
+                                </Button>
+                            ))}
+                        </Menu>
+                        <Section>
+                            {switcherState.switcherIndex === 0 &&
+                            <ListProducts itemList={db.foiled.child} setOpenItem={setOpenItem} orders={orders}/>}
+                            {switcherState.switcherIndex === 1 &&
+                            <ListProducts itemList={db.foiled.festivals} setOpenItem={setOpenItem} orders={orders}/>}
+                            {switcherState.switcherIndex === 2 &&
+                            <ListProducts itemList={db.foiled.digits} setOpenItem={setOpenItem} orders={orders}/>}
+                            {switcherState.switcherIndex === 3 &&
+                            <ListProducts itemList={db.foiled.walkers} setOpenItem={setOpenItem} orders={orders}/>}
+                            {switcherState.switcherIndex === 4 &&
+                            <ListProducts itemList={db.other} setOpenItem={setOpenItem} orders={orders}/>}
+                        </Section>
+                    </Main> :
+                    <div>Загрузка</div>
+                }
             </Content>
             <MainFooter>
                 <Footer />
