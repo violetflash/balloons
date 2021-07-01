@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import ListProducts from "../ListProducts/ListProducts";
-import db from './db';
+// import db from './db';
 import Banner from "../Banner/Banner";
 import { Wrapper, Content, MainFooter, Main } from "../../../Elements/PageElements/PageElements";
 import Footer from "../../../Elements/Footer/Footer";
 import ProductSwitchState from "../../../Hooks/ProductSwitchState/ProductSwitchState";
 import useFetch from "../../../Hooks/useFetch/useFetch";
+import Preloader from "../../../Preloader/Preloader";
 
 const Section = styled.section`
   padding: 15px 0 40px 0;
@@ -63,7 +64,7 @@ const Products = ({ setOpenItem, orders, firebaseDatabase }) => {
 
     const res = useFetch();
 
-    const dbProd = res.response;
+    const db = res.response;
 
 
 
@@ -97,7 +98,7 @@ const Products = ({ setOpenItem, orders, firebaseDatabase }) => {
                             <ListProducts itemList={db.other} firebaseDatabase={firebaseDatabase} setOpenItem={setOpenItem} orders={orders}/>}
                         </Section>
                     </Main> :
-                    <div>Загрузка</div>
+                    <Preloader/>
                 }
             </Content>
             <MainFooter>
