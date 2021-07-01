@@ -7,7 +7,7 @@ const useFetch = () => {
     useEffect(() => {
         const fetchData = async() => {
             try {
-                const db = await fetch('./db/db.json');
+                const db = await fetch('./db/db1.json');
                 const res = await db.json();
                 setResponse(res);
             } catch(err) {

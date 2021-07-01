@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const loaderWidth = '250px';
-const loaderDotSize = '20px';
+const loaderWidth = 250;
+const loaderDotSize = 20;
 
 const Container = styled.div`
   height: 100px;
@@ -11,8 +11,8 @@ const Container = styled.div`
 
 
 const Loader = styled.div`
-  height: ${loaderDotSize};
-  width: ${loaderWidth};
+  height: ${loaderDotSize}px;
+  width: ${loaderWidth}px;
   position: relative;
   //top: 0;
   //bottom: 0;
@@ -24,8 +24,8 @@ const Loader = styled.div`
 
 const LoaderDot = styled.div`
   animation: loader ease-in-out 3s infinite;
-  height: ${loaderDotSize};
-  width: ${loaderDotSize};
+  height: ${loaderDotSize}px;
+  width: ${loaderDotSize}px;
   border-radius: 100%;
   background-color: black;
   position: absolute;
@@ -63,19 +63,19 @@ const LoaderDot = styled.div`
 
   @keyframes loader {
     15% {
-      transform: translateX(0)
+      transform: translateX(0);
     }
 
     45% {
-      transform: translateX( ${loaderWidth} - ${loaderDotSize} )
+      transform: translateX(${loaderWidth - loaderDotSize}px);
     }
 
     65% {
-      transform: translateX( ${loaderWidth} - ${loaderDotSize} )
+      transform: translateX(${loaderWidth - loaderDotSize}px);
     }
 
     95% {
-      transform: translateX(0)
+      transform: translateX(0);
     }
   }
   

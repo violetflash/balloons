@@ -8,6 +8,7 @@ import Footer from "../../../Elements/Footer/Footer";
 import ProductSwitchState from "../../../Hooks/ProductSwitchState/ProductSwitchState";
 import useFetch from "../../../Hooks/useFetch/useFetch";
 import Preloader from "../../../Preloader/Preloader";
+import robot from '../../../../images/robot.gif';
 
 const Section = styled.section`
   padding: 15px 0 40px 0;
@@ -55,6 +56,21 @@ const Button = styled.button`
   }
 `;
 
+const Error = styled.figure`
+  //height: 300px;
+  padding: 0 0 20px;
+  margin: 0;
+  text-align:center;
+  background-color:#f3f3f3;
+  
+  img {
+    width: 300px;
+    height: 200px;
+  }
+`;
+
+// const img = styled.figure
+
 const Products = ({ setOpenItem, orders, firebaseDatabase }) => {
     const switcherState = ProductSwitchState();
 
@@ -73,7 +89,7 @@ const Products = ({ setOpenItem, orders, firebaseDatabase }) => {
         <Wrapper>
             <Content>
                 <Banner/>
-                { db ?
+                { res.response ?
                     <Main>
                         <Menu>
                             {menu.map((link, index) => (
@@ -98,7 +114,14 @@ const Products = ({ setOpenItem, orders, firebaseDatabase }) => {
                             <ListProducts itemList={db.other} firebaseDatabase={firebaseDatabase} setOpenItem={setOpenItem} orders={orders}/>}
                         </Section>
                     </Main> :
-                    <Preloader/>
+                    res.error ?
+                        <Error>
+                            <img src={robot} alt="Кажется, что-то пошло не так..."/>
+                            <figcaption>
+                                Кажется, что-то пошло не так...
+                            </figcaption>
+                        </Error> :
+                        <Preloader/>
                 }
             </Content>
             <MainFooter>
