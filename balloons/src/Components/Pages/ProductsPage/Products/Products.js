@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ListProducts from "../ListProducts/ListProducts";
-// import db from './db';
+import db from './db';
 import Banner from "../Banner/Banner";
 import { Wrapper, Content, MainFooter, Main } from "../../../Elements/PageElements/PageElements";
 import Footer from "../../../Elements/Footer/Footer";
@@ -54,7 +54,7 @@ const Button = styled.button`
   }
 `;
 
-const Products = ({ setOpenItem, orders }) => {
+const Products = ({ setOpenItem, orders, firebaseDatabase }) => {
     const switcherState = ProductSwitchState();
 
     const menuHandler = (index) => {
@@ -63,7 +63,10 @@ const Products = ({ setOpenItem, orders }) => {
 
     const res = useFetch();
 
-    const db = res.response;
+    const dbProd = res.response;
+
+
+
 
     return (
         <Wrapper>
@@ -83,15 +86,15 @@ const Products = ({ setOpenItem, orders }) => {
                         </Menu>
                         <Section>
                             {switcherState.switcherIndex === 0 &&
-                            <ListProducts itemList={db.foiled.child} setOpenItem={setOpenItem} orders={orders}/>}
+                            <ListProducts itemList={db.foiled.child} firebaseDatabase={firebaseDatabase} setOpenItem={setOpenItem} orders={orders}/>}
                             {switcherState.switcherIndex === 1 &&
-                            <ListProducts itemList={db.foiled.festivals} setOpenItem={setOpenItem} orders={orders}/>}
+                            <ListProducts itemList={db.foiled.festivals} firebaseDatabase={firebaseDatabase} setOpenItem={setOpenItem} orders={orders}/>}
                             {switcherState.switcherIndex === 2 &&
-                            <ListProducts itemList={db.foiled.digits} setOpenItem={setOpenItem} orders={orders}/>}
+                            <ListProducts itemList={db.foiled.digits} firebaseDatabase={firebaseDatabase} setOpenItem={setOpenItem} orders={orders}/>}
                             {switcherState.switcherIndex === 3 &&
-                            <ListProducts itemList={db.foiled.walkers} setOpenItem={setOpenItem} orders={orders}/>}
+                            <ListProducts itemList={db.foiled.walkers} firebaseDatabase={firebaseDatabase} setOpenItem={setOpenItem} orders={orders}/>}
                             {switcherState.switcherIndex === 4 &&
-                            <ListProducts itemList={db.other} setOpenItem={setOpenItem} orders={orders}/>}
+                            <ListProducts itemList={db.other} firebaseDatabase={firebaseDatabase} setOpenItem={setOpenItem} orders={orders}/>}
                         </Section>
                     </Main> :
                     <div>Загрузка</div>
