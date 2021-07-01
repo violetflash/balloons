@@ -99,19 +99,18 @@ const Cart = (
         authentication, login, firebaseDatabase
     }) => {
 
-    const fdb = firebaseDatabase();
-
     const sendOrder = () => {
         console.log('orders', orders);
         const newOrder = orders.map(projection(dataRules));
         console.log('New orders', newOrder);
 
-        fdb.ref('orders').push().set({
+        firebaseDatabase.ref('orders').push().set({
             customerName: authentication.displayName,
             email: authentication.email,
             order: newOrder
         });
         setOrders([]);
+        setOrderItemsCounter(null);
     };
 
     const checkoutHandler = () => {

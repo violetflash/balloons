@@ -154,9 +154,6 @@ const InCart = styled.span`
 
 const ListProducts = ({ itemList, setOpenItem, orders, firebaseDatabase }) => {
 
-    const fdb = firebaseDatabase();
-    fdb.ref('other').set(itemList);
-
     const getAllEntriesIndexes = (item) => {
         const indexes = [];
         orders.forEach((elem, index) => {

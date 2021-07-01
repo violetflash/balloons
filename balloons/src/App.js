@@ -41,6 +41,7 @@ const App = () => {
     const indexState = NavActiveIndexState();
     const auth = useAuth(firebase.auth);
     TitleState(openItemState.openItem);
+    const firebaseDatabase = firebase.database();
 
     return (
         <React.Fragment>
@@ -54,7 +55,7 @@ const App = () => {
             {indexState.activeIndex === 0 && <Products
                 {...openItemState}
                 {...orders}
-                firebaseDatabase={firebase.database}
+                firebaseDatabase={firebaseDatabase}
 
             />}
             {indexState.activeIndex === 1 && <About />}
@@ -72,7 +73,7 @@ const App = () => {
                 {...orderItemsCounter}
                 {...openItemState}
                 {...auth}
-                firebaseDatabase={firebase.database}
+                firebaseDatabase={firebaseDatabase}
             />}
             {orderPopup.addToCartPopup && <AddToCartPopupElem
                 {...orderPopup}
