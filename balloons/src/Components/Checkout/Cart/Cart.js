@@ -5,6 +5,8 @@ import CartItem from "../CartItem/CartItem";
 import Footer from "../../Elements/Footer/Footer";
 import { getTotalQuantity, getTotalCartSum, rubCurrencyFormat, projection } from "../../utils/utils";
 import { Wrapper, Content, MainFooter, MainTitle } from "../../Elements/PageElements/PageElements";
+import useOrderConfirm from "../../Hooks/useOrderConfirm/useOrderConfirm";
+import CheckoutConfirm from "../CheckoutConfirm/CheckoutConfirm";
 
 
 const OrderList = styled.ul`
@@ -96,8 +98,11 @@ const Cart = (
         orders, setOrders,
         setOrderItemsCounter, orderItemsCounter,
         setOpenItem,
-        authentication, login, firebaseDatabase
+        authentication, login, firebaseDatabase,
+        setActiveIndex
     }) => {
+
+    const confirmState = useOrderConfirm();
 
     const sendOrder = () => {
         console.log('orders', orders);
@@ -111,6 +116,9 @@ const Cart = (
         });
         setOrders([]);
         setOrderItemsCounter(null);
+        confirmState.setOpenOrderConfirm(true);
+
+
     };
 
     const checkoutHandler = () => {
@@ -139,15 +147,18 @@ const Cart = (
                     </OrderList> :
                     <EmptyList>Вы пока ничего не добавили в корзину...</EmptyList>
                 }
+                {orders.length > 0 &&
                 <Total>
                     <span>Итого:</span>
                     <TotalQuantity>{getTotalQuantity(orders)}</TotalQuantity>
                     <TotalSum>{rubCurrencyFormat(getTotalCartSum(orders))}</TotalSum>
-                </Total>
+                </Total>}
+                {orders.length > 0 &&
                 <CheckoutFooter>
-                    {orders.length > 0 &&
-                    <Button text="Оформить Заказ" onClick={authentication ? checkoutHandler : login}/>}
+                    <Button text="Оформить Заказ" onClick={authentication ? checkoutHandler : login}/>
                 </CheckoutFooter>
+                }
+                {confirmState.openOrderConfirm ? <CheckoutConfirm {...confirmState} setActiveIndex={setActiveIndex}/> : null}
             </Content>
 
             <MainFooter>

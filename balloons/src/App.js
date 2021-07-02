@@ -77,6 +77,7 @@ const App = () => {
                 {...orderItemsCounter}
                 {...openItemState}
                 {...auth}
+                {...indexState}
                 firebaseDatabase={firebaseDatabase}
             />}
             {orderPopup.addToCartPopup && <AddToCartPopupElem

@@ -9,7 +9,7 @@ import AdditionalsState from "../../../Hooks/AdditionalsState/AdditionalsState";
 import ChoicesOptionsState from "../../../Hooks/ChoicesOptionsState/ChoicesOptionsState";
 import Choices from "../Choices/Choices";
 
-const Overlay = styled.div`
+export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
