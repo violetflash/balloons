@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import Context from "../../utils/Context";
 
 const Popup = styled.article`
   position: fixed;
@@ -43,7 +44,9 @@ const Item = styled.span`
   //}
 `;
 
-const AddToCartPopupElem = ({ addToCartPopup }) => {
+const AddToCartPopupElem = () => {
+
+    const { orderPopup: {addToCartPopup} } = useContext(Context);
     return (
         <Popup>Товар <Item>"{addToCartPopup.name}"</Item> добавлен в корзину.</Popup>
     )

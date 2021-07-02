@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import styled from 'styled-components';
 import Delete from '../../../images/delete.png';
 import { capitalizer, rubCurrencyFormat, calcRawProductTotal } from "../../utils/utils";
+import Context from "../../utils/Context";
 
 const DeleteBtn = styled.button`
   position: absolute;
@@ -205,10 +206,15 @@ const Choice = styled.span`
 
 const CartItem = (
     {
-        order, counter, orders, setOrders, index,
-        setOrderItemsCounter, orderItemsCounter,
-        setOpenItem
+        order, counter, index,
     }) => {
+
+    const {
+        openItemState: { setOpenItem },
+        orderItemsCounter: { orderItemsCounter, setOrderItemsCounter },
+        orders: { orders, setOrders }
+    } = useContext(Context);
+
     const adds = order.adds ? order.adds.filter(item => item.checked) : null;
     const addsCount = order.adds ? adds.length : null;
     const addPrice = Math.ceil(order.price * 0.1);

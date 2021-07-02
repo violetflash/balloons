@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components'
 import { Overlay } from "../../Pages/ProductsPage/ModalProduct/ModalProduct";
+import Context from "../../utils/Context";
 
 const Modal = styled.div`
   max-width: 300px;
@@ -18,12 +19,19 @@ const Modal = styled.div`
 `;
 
 const Ok = styled.button`
-  border: none;
-  background-color: teal;
-  color: #fff;
+  border: 1px solid teal;
+  background-color: inherit;
+  color: teal;
   border-radius: 5px;
   padding: 10px;
-  cursor:pointer;
+  cursor: pointer;
+  font-size: 18px;
+  transition: all 0.3s ease-in-out;
+  
+  &:hover {
+    color: #fff;
+    background-color: teal;
+  }
 `;
 
 const Title = styled.h2`
@@ -31,9 +39,21 @@ const Title = styled.h2`
     
 `;
 
-const CheckoutConfirm = ({ setOpenOrderConfirm, setActiveIndex }) => {
+const CheckoutConfirm = (
+    {
+        setOpenOrderConfirm,
+    }) => {
+
+    const {
+        orderItemsCounter: { setOrderItemsCounter },
+        indexState: { setActiveIndex },
+        orders: { setOrders}
+
+    } = useContext(Context);
 
     const btnHandler = () => {
+        setOrders([]);
+        setOrderItemsCounter(null);
         setOpenOrderConfirm(null);
         setActiveIndex(0);
     };

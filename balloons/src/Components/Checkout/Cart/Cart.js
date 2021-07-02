@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from '../../Elements/Button/Button';
 import styled from 'styled-components';
 import CartItem from "../CartItem/CartItem";
@@ -7,6 +7,7 @@ import { getTotalQuantity, getTotalCartSum, rubCurrencyFormat, projection } from
 import { Wrapper, Content, MainFooter, MainTitle } from "../../Elements/PageElements/PageElements";
 import useOrderConfirm from "../../Hooks/useOrderConfirm/useOrderConfirm";
 import CheckoutConfirm from "../CheckoutConfirm/CheckoutConfirm";
+import Context from "../../utils/Context";
 
 
 const OrderList = styled.ul`
@@ -93,14 +94,13 @@ const dataRules = {
     choice: ['choice', item => item.option, item => item ? item : 'Без опций']
 };
 
-const Cart = (
-    {
-        orders, setOrders,
-        setOrderItemsCounter, orderItemsCounter,
-        setOpenItem,
-        authentication, login, firebaseDatabase,
-        setActiveIndex
-    }) => {
+const Cart = () => {
+
+    const {
+        auth: { authentication, login },
+        orders: { orders},
+        firebaseDatabase
+    } = useContext(Context);
 
     const confirmState = useOrderConfirm();
 
@@ -114,9 +114,18 @@ const Cart = (
             email: authentication.email,
             order: newOrder
         });
-        setOrders([]);
-        setOrderItemsCounter(null);
+
         confirmState.setOpenOrderConfirm(true);
+
+        // let timeoutID;
+        //
+        // timeoutID = setTimeout(() => {
+        //     setOrders([]);
+        //     setOrderItemsCounter(null);
+        //     setActiveIndex(0);
+        //     confirmState.setOpenOrderConfirm(false);
+        //     clearTimeout(timeoutID);
+        // }, 5000);
 
 
     };
@@ -137,11 +146,6 @@ const Cart = (
                                 order={item}
                                 counter={index + 1}
                                 index={index}
-                                orders={orders}
-                                setOrders={setOrders}
-                                orderItemsCounter={orderItemsCounter}
-                                setOrderItemsCounter={setOrderItemsCounter}
-                                setOpenItem={setOpenItem}
                             />
                         ))}
                     </OrderList> :
@@ -158,7 +162,10 @@ const Cart = (
                     <Button text="Оформить Заказ" onClick={authentication ? checkoutHandler : login}/>
                 </CheckoutFooter>
                 }
-                {confirmState.openOrderConfirm ? <CheckoutConfirm {...confirmState} setActiveIndex={setActiveIndex}/> : null}
+                {confirmState.openOrderConfirm ?
+                    <CheckoutConfirm
+                        {...confirmState}
+                    /> : null}
             </Content>
 
             <MainFooter>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from '../../../Elements/Button/Button';
 import styled from 'styled-components';
 import CountProduct from "../CountProduct/CountProduct";
@@ -8,6 +8,8 @@ import Additions from "../Additions/Additions";
 import AdditionalsState from "../../../Hooks/AdditionalsState/AdditionalsState";
 import ChoicesOptionsState from "../../../Hooks/ChoicesOptionsState/ChoicesOptionsState";
 import Choices from "../Choices/Choices";
+import Context from "../../../utils/Context";
+import ContextItem from "../../../utils/ContextItem";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -212,13 +214,14 @@ const Amount = styled.div`
   margin-bottom: 20px;
 `;
 
-const ModalProduct = (
-    {
-        openItem, setOpenItem,
-        orders, setOrders,
-        setOrderItemsCounter, orderItemsCounter,
-        addToCartPopup, setAddToCartPopup,
-    }) => {
+const ModalProduct = () => {
+
+    const {
+        openItemState: { openItem, setOpenItem },
+        orders: { orders, setOrders },
+        orderItemsCounter: { orderItemsCounter, setOrderItemsCounter },
+        orderPopup: {setAddToCartPopup}
+    } = useContext(Context);
 
     const counter = ModalProductCountState(openItem);
     const additionsState = AdditionalsState(openItem);
@@ -321,9 +324,15 @@ const ModalProduct = (
                                 <span>{rubCurrencyFormat(openItem.price)}</span>
                             </InfoLine>
                         </InfoLines>
-                        {openItem.choices && <Choices {...choicesState} id={openItem.id} choices={openItem.choices}/>}
+                        {openItem.choices && <Choices
+                            {...choicesState}
+                            id={openItem.id}
+                            choices={openItem.choices}/>}
                     </ModalContent>
-                    {openItem.additional && <Additions price={openItem.price} id={openItem.id} {...additionsState}/>}
+                    {openItem.additional && <Additions
+                        price={openItem.price}
+                        id={openItem.id}
+                        {...additionsState}/>}
                     <Amount>
                         <CountProduct {...counter}/>
                         {<TotalSum>

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import rusFlag from '../../../../images/rus.png';
 import spainFlag from '../../../../images/spain.png';
 import { rubCurrencyFormat } from "../../../utils/utils";
+import Context from "../../../utils/Context";
 
 
 const countries = {
@@ -58,7 +59,7 @@ const Item = styled.figure`
     position: absolute;
     content: '';
     left: 10px;
-    bottom 10px;
+    bottom: 10px;
     width: 16px;
     height: 11px;
     background-image: ${({ country }) => {
@@ -152,7 +153,12 @@ const InCart = styled.span`
 
 
 
-const ListProducts = ({ itemList, setOpenItem, orders, firebaseDatabase }) => {
+const ListProducts = ({ itemList }) => {
+
+    const {
+        openItemState: { setOpenItem },
+        orders: { orders },
+    } = useContext(Context);
 
     const getAllEntriesIndexes = (item) => {
         const indexes = [];

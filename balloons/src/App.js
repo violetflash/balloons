@@ -19,6 +19,7 @@ import Shipping from "./Components/Pages/Shipping/Shipping";
 import Contacts from "./Components/Pages/Contacts/Contacts";
 import TitleState from "./Components/Hooks/TitleState/TitleState";
 import useFDB from "./Components/Hooks/useFDB/useFDB";
+import Context from "./Components/utils/Context";
 
 const firebaseConfig = {
     apiKey: "AIzaSyARo7yq3MZQXVoHskgOi5FIPHr0BcFO0v4",
@@ -47,43 +48,26 @@ const App = () => {
     const fdb = useFDB(firebaseDatabase);
 
     return (
-        <React.Fragment>
+        <Context.Provider value={{
+            auth,
+            openItemState,
+            orders,
+            orderItemsCounter,
+            indexState,
+            orderPopup,
+            firebaseDatabase,
+            fdb
+        }}>
             <GlobalStyles />
-            <NavBar
-                {...orderItemsCounter}
-                {...indexState}
-                {...orders}
-                {...auth}
-            />
-            {indexState.activeIndex === 0 && <Products
-                {...openItemState}
-                {...orders}
-                firebaseDatabase={firebaseDatabase}
-                fdb={fdb}
-
-            />}
+            <NavBar/>
+            {indexState.activeIndex === 0 && <Products />}
             {indexState.activeIndex === 1 && <About />}
             {indexState.activeIndex === 2 && <Shipping />}
             {indexState.activeIndex === 3 && <Contacts />}
-            {openItemState.openItem && <ModalProduct
-                {...openItemState}
-                {...orders}
-                {...orderItemsCounter}
-                {...orderPopup}
-            />}
-            {indexState.activeIndex === 4 && <Cart
-                {...orders}
-                {...indexState}
-                {...orderItemsCounter}
-                {...openItemState}
-                {...auth}
-                {...indexState}
-                firebaseDatabase={firebaseDatabase}
-            />}
-            {orderPopup.addToCartPopup && <AddToCartPopupElem
-                {...orderPopup}
-            />}
-        </React.Fragment>
+            {openItemState.openItem && <ModalProduct />}
+            {indexState.activeIndex === 4 && <Cart />}
+            {orderPopup.addToCartPopup && <AddToCartPopupElem />}
+        </Context.Provider>
     );
 
 };
