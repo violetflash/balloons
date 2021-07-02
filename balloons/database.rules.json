@@ -3,6 +3,9 @@
   "rules": {
     "orders": {
       ".write": true
+    },
+    "products": {
+      ".read": true
     }
   }
 }

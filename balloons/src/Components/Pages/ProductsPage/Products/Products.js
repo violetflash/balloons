@@ -6,9 +6,9 @@ import Banner from "../Banner/Banner";
 import { Wrapper, Content, MainFooter, Main } from "../../../Elements/PageElements/PageElements";
 import Footer from "../../../Elements/Footer/Footer";
 import ProductSwitchState from "../../../Hooks/ProductSwitchState/ProductSwitchState";
-import useFetch from "../../../Hooks/useFetch/useFetch";
+// import useFetch from "../../../Hooks/useFetch/useFetch";
 import Preloader from "../../../Preloader/Preloader";
-import robot from '../../../../images/robot.gif';
+// import robot from '../../../../images/robot.gif';
 
 const Section = styled.section`
   padding: 15px 0 40px 0;
@@ -55,41 +55,42 @@ const Button = styled.button`
 
   }
 `;
-
-const Error = styled.figure`
-  //height: 300px;
-  padding: 0 0 20px;
-  margin: 0;
-  text-align:center;
-  background-color:#f3f3f3;
-  
-  img {
-    width: 300px;
-    height: 200px;
-  }
-`;
+//
+// const Error = styled.figure`
+//   //height: 300px;
+//   padding: 0 0 20px;
+//   margin: 0;
+//   text-align:center;
+//   background-color:#f3f3f3;
+//
+//   img {
+//     width: 300px;
+//     height: 200px;
+//   }
+// `;
 
 // const img = styled.figure
 
-const Products = ({ setOpenItem, orders, firebaseDatabase }) => {
+const Products = ({ setOpenItem, orders, firebaseDatabase, fdb }) => {
     const switcherState = ProductSwitchState();
 
     const menuHandler = (index) => {
         switcherState.setSwitcherIndex(index);
     };
 
-    const res = useFetch();
+    // const res = useFetch();
+    //
+    // const db = res.response;
 
-    const db = res.response;
-
-
+    const db = fdb;
 
 
     return (
         <Wrapper>
             <Content>
                 <Banner/>
-                { res.response ?
+                {/*{ res.response ?*/}
+                { db ?
                     <Main>
                         <Menu>
                             {menu.map((link, index) => (
@@ -114,14 +115,7 @@ const Products = ({ setOpenItem, orders, firebaseDatabase }) => {
                             <ListProducts itemList={db.other} firebaseDatabase={firebaseDatabase} setOpenItem={setOpenItem} orders={orders}/>}
                         </Section>
                     </Main> :
-                    res.error ?
-                        <Error>
-                            <img src={robot} alt="Кажется, что-то пошло не так..."/>
-                            <figcaption>
-                                Кажется, что-то пошло не так...
-                            </figcaption>
-                        </Error> :
-                        <Preloader/>
+                    <Preloader/>
                 }
             </Content>
             <MainFooter>

@@ -42,7 +42,7 @@ const LoaderDot = styled.div`
   }
   
   &:nth-child(3) {
-    background-color: #ef5d74;
+    background-color: palevioletred;
     animation-delay: 0.3s;
   }
   
