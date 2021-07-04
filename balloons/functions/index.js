@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const nodemailer = require('nodemailer');
 const htmlToText = require('nodemailer-html-to-text').htmlToText;
-const {email, password} = require('./config');
+const {email, password} = require('../../../../config');
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
