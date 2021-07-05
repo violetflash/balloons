@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const nodemailer = require('nodemailer');
 const htmlToText = require('nodemailer-html-to-text').htmlToText;
-const {email, password} = require('../../../../config');
+const {email, password} = require('./config');
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -25,7 +25,7 @@ const sendOrderEmail = data => {
                 <ul>
                     ${data.order.map(({name, count, price}) => (
                         `<li>${name} - ${count}шт., цена ${price * count} руб.</li>`)
-                    )}
+                    ).join('')}
                 </ul>
                 <p>Итого: ${data.order.reduce((sum, item) => sum + (item.price * item.count), 0)} руб.</p>
                 <small>Ожидайте курьера...</small>
