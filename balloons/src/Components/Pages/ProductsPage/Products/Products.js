@@ -23,6 +23,16 @@ const menu = ['Детские', 'Поздравления', 'Цифры', 'Фи�
 
 const Menu = styled.div`
   margin-top: 30px;
+  
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    //display: flex;
+    //align-items: center;
+    //justify-content: center;
+    //padding-left: 20px;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 `;
 
 const Button = styled.button`
@@ -53,7 +63,10 @@ const Button = styled.button`
       left: 0;
       right: 0;
     }
-
+  }
+  
+  @media (max-width: 768px) {
+    font-size: 14px;
   }
 `;
 //

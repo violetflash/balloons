@@ -25,22 +25,37 @@ const HeaderTop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  //padding-right: 30px;
 
-  //background-color: #f5d7ae;
-  //height: 70px;
   color: black;
   margin-bottom: 10px;
+  
+  @media (max-width: 1340px) {
+    justify-content: flex-start;
+    padding-left: 120px;
+  }
+  
+  @media (max-width: 690px) {
+    padding-left: 20px;
+  }
+  
+  @media (max-width: 380px) {
+    padding-left: 10px;
+  }
 `;
 
 const HeaderBottom = styled.div`
   display: flex;
-  align-items: flex-end;
   justify-content: center;
+  
+  @media (max-width: 1340px) {
+    justify-content: flex-start;
+  }
+  
+  @media (max-width: 850px) {
+    width: 100%;
+    overflow-x: auto;
 
-  //height: 20px;
-  //padding: 0 40px;
-  //margin-right: 95px;
+  }
 `;
 
 const Menu = styled.nav`
@@ -57,6 +72,23 @@ const Menu = styled.nav`
   height: 100%;
   color: white;
   z-index: 10;
+  white-space: nowrap;
+
+
+  @media (max-width: 1340px) {
+    border-radius: 0 4px 0 0;
+  }
+  
+  @media (max-width: 850px) {
+    border-radius: 0;
+    //width: 100%;
+    justify-content: space-around;
+    flex-wrap: nowrap;
+  }
+  
+  @media (max-width: 650px) {
+    justify-content: flex-start;
+  }
 `;
 
 const NavLink = styled.a`
@@ -70,22 +102,7 @@ const NavLink = styled.a`
   cursor: pointer;
   overflow: hidden;
   color: #fae3d9;
-
-
-  //&::before {
-  //  position: absolute;
-  //  content: '';
-  //  left: 0;
-  //  top: 0px;
-  //  right: 0;
-  //  bottom: 0;
-  //  transition: all 0.3s ease 0s;
-  //  background-color: #fae3d9;
-  //  transform: translateX(-100%);
-  //  z-index: -1;
-  //}
-
-
+  
   &:hover {
     //background-color: #7f6689;
     background-color: rgba(0, 0, 0, 0.15);
@@ -99,6 +116,10 @@ const NavLink = styled.a`
   &.active {
     background-color: #fae3d9;
     color: #A4687B;
+  }
+  
+  @media (max-width: 500px) {
+    font-size: 14px;
   }
 `;
 
@@ -139,27 +160,21 @@ const H1 = styled.h1`
     transform: translateY(-50%) rotate(395deg) scaleX(-1);
     right: -28%;
     z-index: -1;
-
   }
-
-  @media (max-width: 992px) {
-    // display: none;
-    // font-size: 34px;
-    //
-    // &::before {
-    //   position: absolute;
-    //   content: '';
-    //   width: 75px;
-    //   height: 100px;
-      //   background-image: url(${baloons});
-    //   background-position: center;
-    //   background-size: 100px;
-    //   background-repeat: no-repeat;
-    //   top: 53%;
-    //   transform: translateY(-50%) rotate(-45deg);
-    //   left: -50px;
-    //   z-index: -1;
-    // }
+  
+  @media (max-width: 690px) {
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    font-size: 30px;
+  }
+  
+  @media (max-width: 380px) {
+    font-size: 26px;
   }
 `;
 
@@ -198,24 +213,11 @@ const Login = styled.div`
     //visibility: hidden;
     transition: all 0.3s ease-in-out;
     color: #000;
+    
+    @media (max-width: 850px) {
+      display: none;
+    }
   }
-
-
-  //&:hover {
-  //  p {
-  //    opacity: 1;
-  //    visibility: visible;
-  //    transform: translateY(0);
-  //  }
-  //
-  //  button {
-  //    transform: translate(0);
-  //
-  //    & svg path {
-  //      //fill: sandybrown;
-  //    }
-  //  }
-  //}
 `;
 
 const Logout = styled.div`
@@ -234,6 +236,16 @@ const Logout = styled.div`
     //visibility: hidden;
     transition: all 0.3s ease-in-out;
     color: #000;
+
+    @media (max-width: 850px) {
+      display: none;
+    }
+  }
+  
+  span {
+    @media (max-width: 850px) {
+      display: none;
+    }
   }
 
 `;
@@ -245,6 +257,19 @@ const Controls = styled.div`
   justify-content: center;
   bottom: 10px;
   right: 40px;
+  
+  @media (max-width: 850px) {
+    bottom: 45px;
+  }
+  
+  @media (max-width: 500px) {
+    bottom: 40px;
+  }
+  
+  @media (max-width: 380px) {
+    //bottom: 40px;
+    right: 15px;
+  }
 `;
 
 
@@ -270,6 +295,14 @@ const CartIconBox = styled.span`
     background-color: rgba(0, 0, 0, 0.06);
     transform: translateX(-100%);
   }
+  
+  @media (max-width: 1060px) {
+    border-radius: 4px;
+  }
+  
+  @media (max-width: 890px) {
+    display: none;
+  }
 `;
 
 const CartItemsCounter = styled.span`
@@ -291,6 +324,20 @@ const CartItemsCounter = styled.span`
   left: 36px;
   z-index: 1;
   font-family: Philosopher, sans-serif;
+  
+  @media (max-width: 890px) {
+    top: -45px;
+    left: 55px;
+  }
+  
+  @media (max-width: 850px) {
+    top: -30px;
+  }
+  
+  @media (max-width: 500px) {
+    top: -25px;
+    left: 50px;
+  }
 `;
 
 const Cart = styled.button`
@@ -314,6 +361,10 @@ const Cart = styled.button`
       transform: translateX(0);
     }
   }
+  
+  @media (max-width: 1060px) {
+    min-width: 0;
+  }
 `;
 
 const CartIcon = styled.img`
@@ -326,12 +377,20 @@ const CartInfo = styled.span`
   font-size: 16px;
   //font-weight: 700;
   color: white;
+  
+  @media (max-width: 1060px) {
+    display: none;
+  }
 `;
 
 const CartTotal = styled.span`
   font-weight: 700;
   margin: 0 5px 0 5px;
   padding-right: 5px;
+  
+  @media (max-width: 1060px) {
+    display: none;
+  }
 `;
 
 
@@ -387,12 +446,11 @@ const Navbar = () => {
     };
 
 
-
     return (
         <Header>
             <Logo/>
             <HeaderTop>
-                <H1>Магазин воздушных шаров</H1>
+                <H1>{window.innerWidth > 1340 ? 'Магазин воздушных шаров' : 'Сплошное Надувательство'}</H1>
             </HeaderTop>
             <HeaderBottom>
                 <Menu>

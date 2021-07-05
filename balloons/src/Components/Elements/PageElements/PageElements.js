@@ -14,6 +14,10 @@ const Content = styled.div`
   padding: 110px 0 0;
   //max-height: 60vh;
   font-size: 16px;
+  
+  @media (max-width: 500px) {
+    padding: 85px 0 0;
+  }
 `;
 
 const MainFooter = styled.div`

@@ -38,32 +38,8 @@ const Logotype = styled.div`
     }
   }
   
-  @media (max-width: 992px) {
-    & p {
-      position: relative;
-      font-family: 'Amatic SC', cursive;
-      font-size: 40px;
-      margin-top: 0;
-      padding: 5px 15px 15px;
-      background-color: palevioletred;
-      border-radius: 20px;
-      color: cornsilk;
-      max-width: 100%;
-      text-align: center;
-      line-height: 1.2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-
-      &::before {
-        position: absolute;
-        content: '';
-        width: 170px;
-        height: 8px;
-        background-image: url(${line});
-        bottom: 7px;
-      }
+  @media (max-width: 1340px) {
+    display: none;
   }
 `;
 

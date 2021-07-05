@@ -30,6 +30,10 @@ const PercentsImg = styled.img`
   @media (max-width: 1200px) {
     max-width: 400px;
   }
+  
+  @media (max-width: 768px) {
+    max-width: 300px;
+  }
 `;
 
 const Discount = styled.h1`
@@ -38,6 +42,10 @@ const Discount = styled.h1`
   font-weight: 700;
   letter-spacing: 10px;
   //color: darkgoldenrod;
+  
+  @media (max-width: 768px) {
+    font-size: 36px;
+  }
 `;
 
 const Arrow = styled.p`
