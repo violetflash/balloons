@@ -46,3 +46,4 @@ exports.sendUserEmail = functions.database.ref('orders/{pushID}')
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
+
