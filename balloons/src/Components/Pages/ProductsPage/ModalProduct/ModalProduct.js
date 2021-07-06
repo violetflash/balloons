@@ -9,7 +9,7 @@ import AdditionalsState from "../../../Hooks/AdditionalsState/AdditionalsState";
 import ChoicesOptionsState from "../../../Hooks/ChoicesOptionsState/ChoicesOptionsState";
 import Choices from "../Choices/Choices";
 import Context from "../../../utils/Context";
-import ContextItem from "../../../utils/ContextItem";
+// import ContextItem from "../../../utils/ContextItem";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -39,9 +39,11 @@ const Modal = styled.div`
   z-index: 100;
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 
-  @media (max-width: 1200px) {
-    //width: 500px;
-    //height: 500px;
+  @media (max-width: 850px) {
+    max-width: 100vw;
+    width: 100%;
+    //height: 100vh;
+    flex-direction: column;
   }
 
 `;
@@ -54,8 +56,10 @@ const BannerWrapper = styled.div`
   border-radius: 10px;
 
 
-  @media (max-width: 1200px) {
-    //height: 200px;
+  @media (max-width: 850px) {
+    width: 100%;
+    min-height: unset;
+    height: 200px;
   }
 
 `;
@@ -69,6 +73,11 @@ const Banner = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   margin: 0 auto;
+  
+  @media (max-width: 850px) {
+    //height: 200px;
+    //width: 200px;
+  }
 `;
 
 const ModalInfo = styled.div`
@@ -81,6 +90,12 @@ const ModalInfo = styled.div`
   max-width: 450px;
   min-height: 100%;
   padding-bottom: 20px;
+  
+  @media (max-width: 850px) {
+    max-width: 100%;
+    min-height: unset;
+    padding: 10px 25px 20px;
+  }
 `;
 
 const Name = styled.h3`
@@ -163,6 +178,10 @@ const Description = styled.p`
   text-align: justify;
   max-height: 200px;
   overflow-y: auto;
+  
+  @media (max-width: 850px) {
+    padding: 5px 0 0;
+  }
 `;
 
 const ModalContent = styled.div`
@@ -177,6 +196,11 @@ const ModalContent = styled.div`
   //overflow-y: scroll;
   padding-right: 15px;
   border-bottom: 1px solid #CCCCCC;
+  
+  @media (max-width: 850px) {
+    flex: 0 0 auto;
+    padding-right: 0;
+  }
 `;
 
 const Footer = styled.footer`
@@ -343,7 +367,6 @@ const ModalProduct = () => {
                         <Button text={isEdit ? "Сохранить" : "Добавить в корзину"} onClick={isEdit ? editOrder : addToOrder}/>
                     </Footer>
                 </ModalInfo>
-
             </Modal>
         </Overlay>
     );
